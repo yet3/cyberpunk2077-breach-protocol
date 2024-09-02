@@ -1,0 +1,30 @@
+// TODO: add fonts as files
+// TODO: re-think font choices
+@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap");
+// @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap");
+// @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap');
+// @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
+
+@import "./theme";
+@import "./anims";
+@import "./Breach.scss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  // font-family: "Anek Devanagari";
+  font-family: "Maven Pro";
+  // font-family: "M PLUS 1p";
+  @apply text-white bg-page;
+}
+
+#modals {
+  @apply fixed inset-0 z-modals w-screen h-screen pointer-events-none;
+
+  & > * {
+    pointer-events: all;
+  }
+}
+

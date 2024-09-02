@@ -1,0 +1,46 @@
+// TODO: maybe remove font-size
+:root {
+  // Matrix
+  --matrix-code-size: 50px;
+  --matrix-code-font-size: 18px;
+  --matrix-inner-py: 32px;
+  --matrix-inner-px: 100px;
+  --bg-matrix-primary-selection: hsl(247.5 20 15.69);
+  --bg-matrix-secondary-selection: hsl(72.18 98.52 26.47 / 15%);
+
+  // Sequences
+  --sequences-inner-py: 12px;
+  --sequences-inner-px: 16px;
+  --sequences-code-font-size: 16px;
+  --sequences-code-size: 32px;
+  --sequences-codes-gap: 8px;
+  --bg-sequences-highlight: hsl(248 20 16);
+
+
+  --bg-page: 247.5 20 7.84;
+  --bg-modal: 244 15 22;
+
+  --primary-300: 71.68 98.26 77.45;
+  --primary-500: 72 98.9 65.5;
+  --primary-900: 71.47 100 13.33;
+
+  --accent-300: 185 63 77;
+  --accent-500: 185.28 62.81 60.98;
+
+  --success-400: 148 84 53;
+  --success-500: 147.96 84.14 44.51;
+  --success-600: 147.84 84.53 35.49;
+  --success-700: 147.84 80 30;
+  --success-800: 148 44 10;
+  --success-900: 147.57 86.05 8.43;
+
+  --danger-300: 1 110 76;
+  --danger-400: 1 110 69;
+  --danger-500: 1.29 100 63.53;
+  --danger-600: 1.24 100 52.55;
+  --danger-700: 1.12 70 24;
+  --danger-800: 1 80 14;
+  --danger-900: 1 60 8;
+}
+
+

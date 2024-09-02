@@ -1,0 +1,32 @@
+{
+  // https://lilymanga.net/ys/haegu-kill-me-now/episode-54/
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["DOM", "ES2020"],
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "noEmit": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "bundler",
+    "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true,
+    // TODO: clean up paths
+    "paths": {
+      "@stores/*": ["./src/stores/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@typings/*": ["./src/types/*"],
+      "@common/*": ["./src/common/*"],
+      "@contexts/*": ["./src/contexts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@assets/*": ["./src/assets/*"]
+      // "@consts": [
+      //   "./src/consts.ts"
+      // ],
+    }
+  },
+  "include": ["src"]
+}

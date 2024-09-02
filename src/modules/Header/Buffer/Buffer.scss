@@ -1,0 +1,34 @@
+$delay: var(--code-pick-2nd-stage-delay);
+$dur: var(--code-pick-2nd-stage-duration);
+
+.buffer {
+ animation: anim__scale-x-in var(--duration-buffer) var(--delay-buffer) ease 1 forwards;
+}
+
+.buffer-code {
+  transition:
+    padding-bottom 150ms 150ms ease,
+    background 200ms ease;
+}
+
+.buffer-code--filled {
+  transition:
+    padding-bottom $dur $delay ease,
+    color $dur $delay ease,
+    outline $dur $delay ease;
+
+  &::after {
+    @apply content-[""] inset-0 absolute w-full h-full opacity-0 bg-accent-500;
+    animation: anim__code-pick var(--code-pick-duration) ease 1;
+  }
+}
+
+@keyframes anim__buffer-caret-idle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}

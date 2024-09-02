@@ -1,0 +1,88 @@
+$anim-dur: calc(var(--code-pick-duration) * 0.4);
+$anim-delay: calc(var(--code-pick-duration) * 0.6);
+
+.sequences-wrapper {
+  width: calc(100% + var(--breach-inner-pr) + 30px);
+}
+
+.animate-sequences {
+  animation: anim__scale-x-in var(--duration-sequences) var(--delay-sequences)
+    ease 1 forwards;
+}
+
+.sequences__body {
+  animation: anim__sequences-body-in var(--duration-sequences-body)
+    var(--delay-sequences-body) ease 1 forwards;
+}
+
+.sequences__decorations {
+  animation: anim__blink-in 400ms var(--delay-before-idle) ease 1 forwards;
+}
+
+.sequences__header::before {
+  @apply bg-page ribbon-tl content-[""] absolute -z-1;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+}
+
+.sequence__code {
+  transition:
+    margin-left 300ms ease,
+    border-color $anim-dur $anim-delay ease;
+}
+
+.sequence__code--picked {
+  transition:
+    border-color $anim-dur $anim-delay ease,
+    color $anim-dur $anim-delay ease,
+    margin-left 300ms ease;
+
+  animation: anim__seq-code-pick-glow var(--code-pick-duration) ease 1 forwards;
+
+  &::after {
+    @apply content-[""] absolute top-0 left-0 w-full h-full bg-accent-500 opacity-0;
+    animation: anim__seq-code-pick var(--code-pick-duration) ease 1 forwards;
+  }
+}
+
+@keyframes anim__seq-code-pick-glow {
+  0%,
+  70% {
+    @apply code-glow text-accent-500;
+  }
+  85% {
+    @apply text-primary-500;
+  }
+  100% {
+    @apply shadow-none;
+  }
+}
+
+@keyframes anim__seq-code-pick {
+  0% {
+    opacity: 0;
+  }
+  55% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.4;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes anim__sequences-body-in {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

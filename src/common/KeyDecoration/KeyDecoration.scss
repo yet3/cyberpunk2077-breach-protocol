@@ -1,0 +1,18 @@
+@use "@styles/anims" as anims;
+
+@include anims.make_glitch_fade_in_out_loop(
+  anim__key_decoration,
+  animte-key-decoration,
+  (
+    anim_delay: var(--delay-before-idle),
+    idle_before: 1s,
+    idle_after: 9s,
+
+    idle_to_hidden: 0.5s,
+    hidden: 1s,
+    blink_to_shown: 0.1s,
+    blink_to_hidden: 0.1s,
+    blink_hidden: 0.1s,
+  )
+);
+

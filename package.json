@@ -1,0 +1,35 @@
+{
+  "name": "cyberpunk-breach-protocol",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rsbuild build",
+    "dev": "rsbuild dev --open",
+    "format": "biome format --write",
+    "check": "biome check --write",
+    "preview": "rsbuild preview"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.47.5",
+    "clsx": "^2.1.1",
+    "mutative": "^1.0.8",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "use-mutative": "^1.1.6",
+    "zustand": "5.0.0-rc.0",
+    "zustand-mutative": "^1.0.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
+    "@rsbuild/core": "1.0.1-beta.13",
+    "@rsbuild/plugin-react": "1.0.1-beta.13",
+    "@rsbuild/plugin-sass": "1.0.1-beta.13",
+    "@tanstack/router-devtools": "^1.47.5",
+    "@tanstack/router-plugin": "^1.47.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "tailwindcss": "^3.4.10",
+    "tailwindcss-animate": "^1.0.7",
+    "typescript": "^5.5.2"
+  }
+}

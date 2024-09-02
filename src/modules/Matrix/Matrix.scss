@@ -1,0 +1,90 @@
+@use "@styles/anims" as anims;
+
+.matrix {
+ animation: anim__scale-x-in var(--duration-matrix) var(--delay-matrix) ease 1 forwards;
+}
+
+.matrix__code {
+  &::before {
+    content: attr(data-code);
+  }
+
+  &::after {
+    content: "";
+    $gap: 4px;
+    top: calc($gap / 3);
+    left: calc($gap / 2);
+    width: calc(100% - $gap);
+    height: calc(100% - $gap);
+    position: absolute;
+  }
+}
+
+.matrix__code--selectable:hover {
+  @apply cursor-pointer border-2 border-accent-500 code-glow animate-code-glow-pulse;
+
+  &::after {
+    @apply border-2 border-accent-500;
+    @apply code-glow animate-code-glow-pulse;
+  }
+}
+
+.matrix__code--selected {
+  transition: border calc(var(--code-pick-duration) * 0.4)
+    calc(var(--code-pick-duration) * 0.6) ease;
+
+  &::after {
+    @apply opacity-0 bg-accent-500 border-2 border-accent-500;
+    @apply code-glow;
+
+    animation: anim__code-pick var(--code-pick-duration) ease 1;
+  }
+
+  &::before {
+    animation: anim__matrix__code-pick-content 1ms
+      calc(var(--code-pick-duration) / 2) ease 1 forwards;
+  }
+}
+
+@keyframes anim__matrix__code-pick-content {
+  0% {
+    content: attr(data-code);
+  }
+  100% {
+    content: "[ ]";
+  }
+}
+
+@include anims.make_glitch_fade_in_out_loop(
+  anim__code_matrix_filler_1,
+  animte-matrix-filler-1,
+  (
+    anim_delay: 0s,
+    idle_before: 6s,
+    idle_after: 5s,
+
+    idle_to_hidden: 0.15s,
+    hidden: 2s,
+
+    blink_to_shown: 0.1s,
+    blink_to_hidden: 0.1s,
+    blink_hidden: 0.1s,
+  )
+);
+
+@include anims.make_glitch_fade_in_out_loop(
+  anim__code_matrix_filler_2,
+  animte-matrix-filler-2,
+  (
+    anim_delay: 0.25s,
+    idle_before: 6s,
+    idle_after: 5s,
+
+    idle_to_hidden: 0.15s,
+    hidden: 2s,
+
+    blink_to_shown: 0.1s,
+    blink_to_hidden: 0.1s,
+    blink_hidden: 0.1s,
+  )
+);

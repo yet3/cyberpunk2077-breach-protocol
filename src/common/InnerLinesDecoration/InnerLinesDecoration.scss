@@ -1,0 +1,27 @@
+.animate-inner-lines-decoration {
+  $delay: calc(var(--delay-before-idle) + 4s);
+  animation: anim__inner-lines-decoration-1 14s $delay ease infinite;
+}
+
+// 1st anim
+// 1s -> out
+// 2s -> hidden
+// 1s -> in
+// 6s -> delay
+
+@keyframes anim__inner-lines-decoration-1 {
+  0%,
+  40%,
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  7.14% {
+    opacity: 0;
+  }
+  9%,
+  30% {
+    opacity: 0;
+    transform: translateX(var(--goal-x));
+  }
+}
