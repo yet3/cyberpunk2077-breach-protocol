@@ -15,6 +15,9 @@
   --delay-timer: var(--game-delay);
   --duration-timer: var(--game-duration);
 
+  --delay-buffer-title: var(--game-delay);
+  --duration-buffer-title: var(--game-duration);
+
   --delay-buffer: calc(var(--game-delay) + var(--game-duration));
   --duration-buffer: var(--game-duration);
 

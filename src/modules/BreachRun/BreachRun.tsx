@@ -1,14 +1,16 @@
+import "./Breach.scss";
 import { AppStoreProvider, getAppStore } from "@contexts/AppStoreCtx";
 import { PrngCtxProvider, usePrng } from "@contexts/PrngCtx";
 import { AVAILABLE_CODES } from "@lib/const.lib";
+import { BreachNav } from "@modules/BrachNav";
 import { DebugInfo } from "@modules/Dev";
 import { Header } from "@modules/Header";
-import { BufferIcon } from "@modules/Header/Buffer/BufferIcon";
 import { Matrix } from "@modules/Matrix";
 import { Sequences } from "@modules/Sequences";
 import { WelcomeModal } from "@modules/WelcomeModal";
 import type { IBreachConfig } from "@typings/Breach.types";
 import { useEffect } from "react";
+import { BufferTitle } from "./BufferTitle";
 import { BreachDecorations } from "./Decorations";
 
 interface IProps {
@@ -16,7 +18,6 @@ interface IProps {
 }
 
 export const BreachRun = ({ config: userConfig }: IProps) => {
-
   // PrngCtx must be first
   return (
     <PrngCtxProvider
@@ -24,8 +25,9 @@ export const BreachRun = ({ config: userConfig }: IProps) => {
       availableCodes={userConfig.availableCodes ?? AVAILABLE_CODES}
     >
       <AppStoreProvider userConfig={userConfig}>
-        <div className="w-screen h-screen flex justify-center items-start py-16">
+        <div className="w-screen h-screen flex flex-col items-center justify-start space-y-4 pt-16 pb-4">
           <Breach userConfig={userConfig} />
+          <BreachNav />
         </div>
         <WelcomeModal />
         <DebugInfo />
@@ -43,10 +45,12 @@ export const Breach = ({ userConfig }: { userConfig: IBreachConfig }) => {
       (s) => s.config.seed,
       () => {
         const store = appStore.getState();
-        store.setConfig(
-          prng.generateBreachConfig({ ...userConfig, seed: store.config.seed }),
-        );
-        store.resetStore()
+        const conf = prng.generateBreachConfig({
+          ...userConfig,
+          seed: store.config.seed,
+        });
+        store.setConfig(conf);
+        store.resetBreach();
       },
     );
 
@@ -59,22 +63,15 @@ export const Breach = ({ userConfig }: { userConfig: IBreachConfig }) => {
     <div className="breach border border-primary-500 game-ui relative">
       <BreachDecorations />
 
-      <div
-        style={{
-          height: "var(--breach-inner-pt)",
-          // TODO: use vars
-          marginLeft: 548 + 48,
-        }}
-      >
-        <BufferIcon />
-        BUFFER
-      </div>
+      <BufferTitle />
 
       <Header />
 
       <div
-        className="grid grid-cols-[500px_1fr] justify-start gap-x-12"
+        className="grid justify-start"
         style={{
+          gridTemplateColumns: "var(--matrix-width) 1fr",
+          columnGap: "var(--breach-content-x-gap)",
           paddingLeft: "var(--breach-inner-pl)",
           paddingRight: "var(--breach-inner-pr)",
         }}

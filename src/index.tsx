@@ -2,7 +2,7 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "@styles/index.scss";
-import "@lib/seed.lib"
+import "@lib/seed.lib";
 
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";

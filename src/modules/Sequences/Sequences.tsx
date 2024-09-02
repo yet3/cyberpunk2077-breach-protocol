@@ -58,7 +58,7 @@ export const Sequences = () => {
             type="button"
             className="ml-4 px-2 border border-primary-500 mr-8"
             onClick={() => {
-              window.history.replaceState({}, document.title, window.location.href.replace(/\?.*$/, ''));
+              // window.history.replaceState({}, document.title, window.location.href.replace(/\?.*$/, ''));
               setSeed(new Date().getTime());
             }}
           >

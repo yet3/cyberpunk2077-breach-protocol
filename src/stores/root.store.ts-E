@@ -15,7 +15,7 @@ export type IRootStore = IBufferSlice &
   ISequencesSlice &
   IConfigSlice &
   IGeneralSlice & {
-    resetBreach: () => void;
+    resetStore: () => void;
     newBreach: () => void;
     setSeed: (seed: number) => void;
     setConfig: (config: IBreachConfigParsed) => void;

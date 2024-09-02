@@ -1,12 +1,21 @@
 // TODO: maybe remove font-size
 :root {
   // Matrix
+  --matrix-width: 500px;
   --matrix-code-size: 50px;
   --matrix-code-font-size: 18px;
   --matrix-inner-py: 32px;
   --matrix-inner-px: 100px;
   --bg-matrix-primary-selection: hsl(247.5 20 15.69);
   --bg-matrix-secondary-selection: hsl(72.18 98.52 26.47 / 15%);
+
+  --breach-outer-px: 80px;
+  --breach-inner-pt: 3.5rem;
+  --breach-inner-pb: 3.5rem;
+  --breach-inner-pl: 3rem;
+  --breach-inner-pr: 3rem;
+  --breach-content-x-gap: 48px;
+  --breach-content-y-gap: 40px;
 
   // Sequences
   --sequences-inner-py: 12px;

@@ -8,13 +8,17 @@ export interface IBreachConfig {
   matrixRows?: number;
   bufferSize?: number;
 
-  maxSequenceSize?: number
-  minSequenceSize?: number
-  maxNumberOfSequences?: number
+  maxSequenceSize?: number;
+  minSequenceSize?: number;
+  maxNumberOfSequences?: number;
 }
 
-export type IBreachConfigParsed = Required<IBreachConfig>
+export type IBreachConfigParsed = Required<IBreachConfig>;
 
+export enum BreachDailyStatus {
+  SOLVED = "SOLVED",
+  FAILED = "FAILED",
+}
 
 export enum BreachFinishStauts {
   TIMED_OUT = "TIMED_OUT",

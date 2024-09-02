@@ -62,6 +62,7 @@ export const Matrix = () => {
     direction: MatrixSelectionDirection.ROW,
     value: 0,
   });
+  const [matrixCols, setMatrixCols] =  useState(breachConfig.matrixCols)
   const [codesList, setCodesList] = useState<IMatrixCode[]>(
     generateEmptyMatrix(breachConfig),
   );
@@ -84,10 +85,12 @@ export const Matrix = () => {
       console.log("Generate Matrix Error:", resp.error);
     } else {
       setSelection(resp.data.selection);
+      setMatrixCols(breachConfig.matrixCols)
       setCodesList(resp.data.matrix);
       setSequences(res.sequences);
     }
 
+    // TODO: maybe move it from here
     const storeUnsub = appStore.subscribe(
       (s) => [
         s.selectedCodes.length,
@@ -204,7 +207,7 @@ export const Matrix = () => {
                 onMouseLeave={() => clearHoveredCode()}
                 onMouseMove={handleCodesHover}
                 style={{
-                  gridTemplateColumns: `repeat(${breachConfig.matrixCols}, auto)`,
+                  gridTemplateColumns: `repeat(${matrixCols}, auto)`,
                 }}
               >
                 {codesList.map((data) => (

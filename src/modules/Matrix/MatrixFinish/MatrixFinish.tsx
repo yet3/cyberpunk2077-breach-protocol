@@ -1,9 +1,14 @@
 import { ModelLineTextDecoration } from "@common/ModelLineTextDecoration";
 import { SystemImageDecoration } from "@common/SystemImageDecoration";
 import { useAppStore, useAppStoreShallow } from "@contexts/AppStoreCtx";
+import {
+  DAILY_BREACH_STATUS_KEY,
+  DAILY_BREACH_TIMESTAMP_KEY,
+} from "@lib/const.lib";
 import { selectBreachFinishDetials } from "@stores/root.store";
+import { BreachDailyStatus } from "@typings/Breach.types";
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MatrixFinishButton } from "./Button";
 import { MatrixFinishCode } from "./Code";
 import { MatrixFinishHeader } from "./Header";
@@ -16,11 +21,33 @@ import {
 
 export const MatrixFinish = () => {
   const finishDetails = useAppStoreShallow(selectBreachFinishDetials);
-  const resetStore = useAppStore((s) => s.resetStore);
+  const [resetBreach, newBreach] = useAppStoreShallow((s) => [s.resetBreach, s.newBreach]);
   const [isCodeFinished, setIsCodeFinished] = useState(false);
+
+  // TODO: COUlD be better, maybe make a helper for startOfday
+  useEffect(() => {
+    if (!finishDetails) return;
+
+    console.log(finishDetails);
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+
+    localStorage.setItem(
+      DAILY_BREACH_TIMESTAMP_KEY,
+      startOfDay.getTime().toString(),
+    );
+
+    localStorage.setItem(
+      DAILY_BREACH_STATUS_KEY,
+      finishDetails.isSuccess
+        ? BreachDailyStatus.SOLVED
+        : BreachDailyStatus.FAILED,
+    );
+  }, [finishDetails]);
 
   if (!finishDetails) return null;
   const { isSuccess, status } = finishDetails;
+
   return (
     <div
       className="absolute z-10 w-full flex flex-col"
@@ -81,13 +108,20 @@ export const MatrixFinish = () => {
           isSuccess={isSuccess}
           content="RETRY"
           onClick={() => {
-            resetStore();
+            resetBreach();
           }}
         />
         <MatrixFinishButton
           isSuccess={isSuccess}
           content="NEXT BREACH"
-          onClick={() => {}}
+          onClick={() => {
+            if (window.location.pathname.includes("/daily")) {
+              window.location.replace("/");
+              return;
+            }
+
+            newBreach();
+          }}
         />
       </footer>
     </div>

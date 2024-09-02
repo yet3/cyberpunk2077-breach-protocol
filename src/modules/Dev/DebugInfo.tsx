@@ -10,7 +10,7 @@ export const DebugInfo = () => {
     <div
       id="debug-info"
       className={clsx({
-        "!fixed z-[999999] right-8 bottom-8 ribbon-br ribbon-border rb-bg-page rb-primary-500": true,
+        "!fixed z-[999999] left-8 bottom-8 ribbon-br ribbon-border rb-bg-page rb-primary-500": true,
         "p-3 text-sm": true,
       })}
     >

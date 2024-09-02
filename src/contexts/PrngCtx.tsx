@@ -65,15 +65,13 @@ export const PrngCtxProvider = ({ seed, availableCodes, children }: IProps) => {
   const generateBreachConfig = (
     userConfig: IBreachConfig,
   ): IBreachConfigParsed => {
-    setSeed(userConfig.seed)
+    setSeed(userConfig.seed);
 
     const timeIdx = randomInt({ min: 1, max: 4 });
 
     const matrixSize = randomInt({ min: 4, max: 7 });
 
     const bufferSize = randomInt({ min: 4, max: 8 });
-
-    console.log(userConfig.seed, matrixSize)
 
     return {
       time: timeIdx * 20,

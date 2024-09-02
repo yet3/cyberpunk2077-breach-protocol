@@ -1,17 +1,14 @@
 // TODO: move it from here into Breach component
 
 .breach {
-  --breach-wdith: 1300px;
-
-  width: var(--breach-wdith);
+  width: calc(100% - var(--breach-outer-px) * 2);
   height: 100%;
-
-  --breach-inner-pt: 3.5rem;
-  --breach-inner-pb: 3.5rem;
-  --breach-inner-pl: 3rem;
-  --breach-inner-pr: 3rem;
 }
 
+.buffer-title {
+  animation: anim__scale-x-in var(--duration-buffer-title) var(--delay-buffer-title) ease 1
+    forwards;
+}
 
 .breach-inner-decoration-rect {
   $sticks-out-by: 5px;

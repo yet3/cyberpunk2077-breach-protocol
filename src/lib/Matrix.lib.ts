@@ -89,6 +89,7 @@ export const generateMatrix = (
       let idx = -1;
       let tries = 0;
 
+      // TODO: handle the bad case
       while (idx < 0 || (usedIdxs.includes(idx) && tries < 10)) {
         if (direction === MatrixSelectionDirection.ROW) {
           col = prng.randomInt({ min: 0, max: config.matrixCols - 1 });
