@@ -1,0 +1,10 @@
+{
+  "outputDirectory": "dist",
+  "installCommand": "pnpm install",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
