@@ -1,7 +1,10 @@
+import { Button } from "@common/Button";
 import { RouterLink } from "@common/RouterLink";
+import { useAppStore } from "@contexts/AppStoreCtx";
 import { DailyBtn } from "./DailyBtn";
 
 export const BreachBottomActions = () => {
+  const newBreach = useAppStore((s) => s.newBreach);
   const isOnDaily = window.location.pathname.includes("/daily");
 
   return (
@@ -11,14 +14,22 @@ export const BreachBottomActions = () => {
         paddingRight: "var(--breach-outer-px)",
       }}
     >
-      {!isOnDaily ? <DailyBtn /> : <RouterLink to="/" content="NEW BREACH" />}
-
-      {/* <Button */}
-      {/*   content="CUSTOM BREACH" */}
-      {/*   onClick={() => { */}
-      {/*     window.location.replace("/daily"); */}
-      {/*   }} */}
-      {/* /> */}
+      {!isOnDaily ? (
+        <>
+          <Button
+            content="NEW BREACH"
+            onClick={() => {
+              window.history.pushState({}, document.title, "/");
+              newBreach({
+                seed: new Date().getTime(),
+              });
+            }}
+          />
+          <DailyBtn />
+        </>
+      ) : (
+        <RouterLink to="/" content="NEW BREACH" />
+      )}
     </nav>
   );
 };
