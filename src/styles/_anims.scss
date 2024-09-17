@@ -1,11 +1,11 @@
 :root {
   --delay-init-load: 0s;
-  --duration-breach-in: 0.4s;
+  --duration-breach-in: 0.6s;
 
   --delay-breach-sections-in: calc(
     var(--delay-init-load) + var(--duration-breach-in)
   );
-  --duration-breach-sections-in: 0.2s;
+  --duration-breach-sections-in: 0.3s;
 
   --delay-before-idle: calc(
     var(--delay-breach-sections-in) + var(--duration-breach-sections-in)
