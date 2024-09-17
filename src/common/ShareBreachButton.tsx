@@ -23,9 +23,8 @@ export const ShareBreachButton = () => {
     }
 
     try {
-      const url = new URL(window.location.href);
+      const url = new URL(window.location.origin);
       url.pathname += `${seed}`;
-      // url.searchParams.set("seed", seed.toString());
 
       await navigator.clipboard.writeText(url.toString());
       setStatus("ok");
