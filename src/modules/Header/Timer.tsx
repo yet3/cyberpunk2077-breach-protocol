@@ -1,6 +1,5 @@
 import { useAppStoreShallow } from "@contexts/AppStoreCtx";
 import clsx from "clsx";
-import "./Timer.scss";
 import { useEffect, useState } from "react";
 
 export const Timer = () => {
@@ -54,15 +53,15 @@ export const Timer = () => {
     .padStart(2, "0")}`;
 
   return (
-    <div className="grid text-primary-500 breach-timer opacity-0 origin-left scale-x-0">
-      <div className="absolute -top-1 text-[4px] text-primary-500/50 w-full border-b border-primary-500/50 pb-0.5">
+    <div className="animate-scale-from-left grid text-primary-500 breach-timer">
+      <div className="absolute -top-1 text-4px text-primary-500/50 w-full border-b border-primary-500/50 pb-0.5">
         ONLY CC35 CERTIFIED AND DHSF 5TH CLASS OFFICERS ARE ALLOWED TO
         MANIPULATE, ACCESS OR DISABLE THIS DEVICE.
       </div>
 
       <div className="grid grid-cols-[1fr_auto] items-start pt-3 pb-1">
-        <h2 className="font-light text-2xl">BREACH TIME REMAINING</h2>
-        <div className=" flex justify-center border border-primary-500 py-1 w-20 tabular-nums">
+        <h2 className="text-2xl">BREACH TIME REMAINING</h2>
+        <div className="flex justify-center border border-primary-500 py-1 w-20 tabular-nums lg:text-base text-lg">
           {time === 0 ? "NaN" : displayTime}
         </div>
       </div>

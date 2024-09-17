@@ -13,19 +13,16 @@
     "moduleResolution": "bundler",
     "useDefineForClassFields": true,
     "allowImportingTsExtensions": true,
-    // TODO: clean up paths
     "paths": {
+      "@public/*": ["./public/*"],
       "@stores/*": ["./src/stores/*"],
       "@modules/*": ["./src/modules/*"],
-      "@lib/*": ["./src/lib/*"],
+      "@lib": ["./src/lib/index.ts"],
       "@typings/*": ["./src/types/*"],
       "@common/*": ["./src/common/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@styles/*": ["./src/styles/*"],
       "@assets/*": ["./src/assets/*"]
-      // "@consts": [
-      //   "./src/consts.ts"
-      // ],
     }
   },
   "include": ["src"]

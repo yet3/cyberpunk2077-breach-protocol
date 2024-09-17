@@ -1,6 +1,8 @@
 .matrix-finish__header {
-  animation: matrix-finish__header-in var(--finish_header_dur)
-    var(--finish_delay) ease forwards 1;
+  $dur: var(--finish_header_dur);
+  $delay: var(--finish_delay);
+  animation: matrix-finish__header-in $dur $delay ease forwards 1;
+
   transform: scaleX(0.1);
   opacity: 1;
 
@@ -39,9 +41,9 @@
 }
 
 .matrix-finish__header-decoration {
+  $dur: var(--finish_header_dur);
   $delay: calc(var(--finish_delay) + 100ms);
-  animation: matrix-finish__header-text-in var(--finish_header_dur) $delay
-    ease forwards 1;
+  animation: matrix-finish__header-text-in $dur $delay ease forwards 1;
   transform: scale(0);
   transform-origin: top left;
 
@@ -56,9 +58,9 @@
 }
 
 .matrix-finish__body {
+  $dur: var(--finish_body_dur);
   $delay: calc(var(--finish_delay) + var(--finish_header_dur));
-  animation: anim__matrix-finish__body-in var(--finish_body_dur) $delay ease
-    forwards 1;
+  animation: anim__matrix-finish__body-in $dur $delay ease forwards 1;
   opacity: 0;
   transform: scaleY(0);
   transform-origin: top;
@@ -151,7 +153,8 @@
 
 .matrix-finish__footer {
   $delay: calc(
-    var(--finish_delay) + var(--finish_body_dur) + var(--finish_header_dur) - 150ms
+    var(--finish_delay) + var(--finish_body_dur) + var(--finish_header_dur) -
+      150ms
   );
 
   animation: anim__matrix-finish__footer-in 0.6s $delay ease 1 forwards;

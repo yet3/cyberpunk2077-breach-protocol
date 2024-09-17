@@ -29,6 +29,29 @@ module.exports = {
       zIndex: {
         1: 1,
         modals: 1000,
+        mobileBlocker: 9999,
+      },
+      fontSize: {
+        "3px": "0.1875rem",
+        "4px": "0.25rem",
+        "5px": "0.3125rem",
+        "6px": "0.375rem",
+        "7px": "0.4375rem",
+        "8px": "0.5rem",
+        "9px": "0.5625rem",
+      },
+      width: {
+        "1px": "1px",
+        "2px": "2px",
+        "3px": "3px",
+      },
+      height: {
+        "1px": "1px",
+        "2px": "2px",
+        "3px": "3px",
+      },
+      borderRadius: {
+        "xs": "1px",
       },
       dropShadow: {
         "primary-500": "0 0px 8px hsl(var(--primary-500) / 20%)",
@@ -83,10 +106,17 @@ module.exports = {
           },
         },
       },
+
+      screens: {
+        sm: "624px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1425px",
+      },
     },
   },
   plugins: [
-    require("tailwindcss-animate"),
     plugin(({ addUtilities, theme, matchUtilities }) => {
       const colors = theme("backgroundColor");
 

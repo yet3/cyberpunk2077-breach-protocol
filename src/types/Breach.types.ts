@@ -1,5 +1,4 @@
 export interface IBreachConfig {
-  seed: number;
   time?: number; // seconds
 
   availableCodes?: string[];
@@ -7,10 +6,11 @@ export interface IBreachConfig {
   matrixCols?: number;
   matrixRows?: number;
   bufferSize?: number;
+  solutionSize?: number;
 
   maxSequenceSize?: number;
   minSequenceSize?: number;
-  maxNumberOfSequences?: number;
+  numberOfSequences?: number;
 }
 
 export type IBreachConfigParsed = Required<IBreachConfig>;
@@ -20,7 +20,7 @@ export enum BreachDailyStatus {
   FAILED = "FAILED",
 }
 
-export enum BreachFinishStauts {
+export enum BreachFinishStatus {
   TIMED_OUT = "TIMED_OUT",
   BUFFER_FULL = "BUFFER_FULL",
   DAEMONS_UPLOADED = "DAEMONS_UPLOADED",

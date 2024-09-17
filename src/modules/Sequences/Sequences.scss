@@ -1,22 +1,8 @@
-$anim-dur: calc(var(--code-pick-duration) * 0.4);
-$anim-delay: calc(var(--code-pick-duration) * 0.6);
+$duration-code-pick: calc(var(--duration-code-pick) * 0.4);
+$delay-code-pick: calc(var(--duration-code-pick) * 0.6);
 
 .sequences-wrapper {
-  width: calc(100% + var(--breach-inner-pr) + 30px);
-}
-
-.animate-sequences {
-  animation: anim__scale-x-in var(--duration-sequences) var(--delay-sequences)
-    ease 1 forwards;
-}
-
-.sequences__body {
-  animation: anim__sequences-body-in var(--duration-sequences-body)
-    var(--delay-sequences-body) ease 1 forwards;
-}
-
-.sequences__decorations {
-  animation: anim__blink-in 400ms var(--delay-before-idle) ease 1 forwards;
+  width: calc(100% + var(--breach-inner-pr) + var(--sequences-sticks-out-by));
 }
 
 .sequences__header::before {
@@ -30,20 +16,20 @@ $anim-delay: calc(var(--code-pick-duration) * 0.6);
 .sequence__code {
   transition:
     margin-left 300ms ease,
-    border-color $anim-dur $anim-delay ease;
+    border-color $duration-code-pick $delay-code-pick ease;
 }
 
 .sequence__code--picked {
   transition:
-    border-color $anim-dur $anim-delay ease,
-    color $anim-dur $anim-delay ease,
+    border-color $duration-code-pick $delay-code-pick ease,
+    color $duration-code-pick $delay-code-pick ease,
     margin-left 300ms ease;
 
-  animation: anim__seq-code-pick-glow var(--code-pick-duration) ease 1 forwards;
+  animation: anim__seq-code-pick-glow var(--duration-code-pick) ease 1 forwards;
 
   &::after {
     @apply content-[""] absolute top-0 left-0 w-full h-full bg-accent-500 opacity-0;
-    animation: anim__seq-code-pick var(--code-pick-duration) ease 1 forwards;
+    animation: anim__seq-code-pick var(--duration-code-pick) ease 1 forwards;
   }
 }
 
@@ -78,11 +64,3 @@ $anim-delay: calc(var(--code-pick-duration) * 0.6);
   }
 }
 
-@keyframes anim__sequences-body-in {
-  0% {
-    transform: scaleY(0);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}

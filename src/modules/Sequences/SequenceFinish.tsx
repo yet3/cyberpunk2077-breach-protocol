@@ -6,8 +6,8 @@ interface IProps {
 }
 
 export const SequenceFinish = ({ status }: IProps) => {
-  const isInProgress = status === SequenceStatus.IN_PROGRESS
-  const isSolved = status === SequenceStatus.SOLVED
+  const isInProgress = status === SequenceStatus.IN_PROGRESS;
+  const isSolved = status === SequenceStatus.SOLVED;
   return (
     <div
       className={clsx({
@@ -15,7 +15,7 @@ export const SequenceFinish = ({ status }: IProps) => {
         "scale-y-0": isInProgress,
         "scale-y-100": !isInProgress,
         "rb-bg-success-500 rb-success-600 text-success-900": isSolved,
-        "rb-bg-danger-500 rb-danger-600 text-danger-900": !isSolved
+        "rb-bg-danger-500 rb-danger-600 text-danger-900": !isSolved,
       })}
       style={{
         boxShadow: `0px 0px 10px 0px hsl(var(--${status === "solved" ? "success-500" : "danger-500"}) / 40%)`,

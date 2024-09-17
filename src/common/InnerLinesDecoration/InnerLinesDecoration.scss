@@ -3,12 +3,6 @@
   animation: anim__inner-lines-decoration-1 14s $delay ease infinite;
 }
 
-// 1st anim
-// 1s -> out
-// 2s -> hidden
-// 1s -> in
-// 6s -> delay
-
 @keyframes anim__inner-lines-decoration-1 {
   0%,
   40%,

@@ -1,3 +1,5 @@
+import type { IMatrixCode } from "./Matrix.types";
+
 export enum SequenceStatus {
   SOLVED = "solved",
   FAILED = "failed",
@@ -6,6 +8,6 @@ export enum SequenceStatus {
 
 export interface ISequence {
   id: string;
-  codes: string[];
+  codes: IMatrixCode[];
   status: SequenceStatus;
 }

@@ -1,1 +1,1 @@
-export * from './DebugInfo'
+export * from "./DebugInfoLazy";

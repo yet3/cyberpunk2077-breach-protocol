@@ -29,7 +29,7 @@ export const Sequence = ({ sequence }: IProps) => {
 
     for (let i = 0; i < selectedCodes.length; i++) {
       const bufCode = selectedCodes[i].code;
-      if (bufCode === sequence.codes[seqIdx]) {
+      if (bufCode === sequence.codes[seqIdx].code) {
         _pickedCodes[seqIdx] = true;
         seqIdx++;
         if (seqIdx === sequence.codes.length) {
@@ -40,7 +40,7 @@ export const Sequence = ({ sequence }: IProps) => {
         seqIdx = 0;
         _pickedCodes = [];
         let offsetIdx = i + 1;
-        if (bufCode === sequence.codes[0]) {
+        if (bufCode === sequence.codes[0].code) {
           seqIdx = 1;
           _pickedCodes[0] = true;
           offsetIdx = i;
@@ -69,9 +69,9 @@ export const Sequence = ({ sequence }: IProps) => {
     <li className="z-10 relative pb-4">
       <SequenceFinish status={sequence.status} />
       <ul className="flex" style={{ gap: "var(--sequences-codes-gap)" }}>
-        {sequence.codes.map((code, idx) => (
+        {sequence.codes.map((seqCode, idx) => (
           <li
-            key={`${code}-${idx}`}
+            key={`seq-${seqCode.id}`}
             className={clsx({
               "sequence__code relative grid place-items-center border-accent-500": true,
               //
@@ -82,7 +82,7 @@ export const Sequence = ({ sequence }: IProps) => {
               // Hovered
               "border border-accent-500 text-accent-500 code-glow":
                 isInProgress &&
-                hoveredCode?.code === code &&
+                hoveredCode?.code === seqCode.code &&
                 selectedCodes.length === idx + offset,
             })}
             style={{
@@ -95,7 +95,7 @@ export const Sequence = ({ sequence }: IProps) => {
               height: "var(--sequences-code-size)",
             }}
           >
-            {code}
+            {seqCode.code}
           </li>
         ))}
       </ul>

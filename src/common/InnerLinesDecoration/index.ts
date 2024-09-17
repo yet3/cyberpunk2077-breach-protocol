@@ -1,1 +1,1 @@
-export * from './InnerLinesDecoration'
+export * from "./InnerLinesDecoration";

@@ -1,0 +1,45 @@
+@use "sass:map";
+@use "sass:list";
+
+@function percent($total, $value) {
+  @return calc($value / $total) * 100%;
+}
+
+@mixin timed_keyframes($name, $items...) {
+  $total_duration: 0ms;
+
+  $amt_of_steps: 0;
+  $steps: ();
+
+  @for $i from 1 through list.length($items) {
+    $item: list.nth($items, $i);
+
+    $content_key: list.nth($item, 1);
+    @for $ii from 2 through list.length($item) {
+      $dur: list.nth($item, $ii);
+
+      $amt_of_steps: calc($amt_of_steps + 1);
+      $total_duration: calc($total_duration + $dur);
+
+      $steps: list.append($steps, ($content_key, $dur));
+    }
+  }
+
+  :root {
+    --duration-#{$name}: #{$total_duration};
+  }
+
+  $acc_dur: 0ms;
+  @keyframes #{$name} {
+    @for $i from 1 through list.length($steps) {
+      $step: list.nth($steps, $i);
+      $content_key: list.nth($step, 1);
+      $step_dur: list.nth($step, 2);
+
+      $acc_dur: calc($acc_dur + $step_dur);
+      #{percent($total_duration, $acc_dur)} {
+        @content ($content_key);
+      }
+    }
+  }
+}

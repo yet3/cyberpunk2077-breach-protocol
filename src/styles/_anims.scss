@@ -1,34 +1,22 @@
-@use "sass:map";
-
 :root {
-  --app-delay: 0.2s;
-  --app-duration: 0.4s;
-  // --app-delay: 0.4s;
-  // --app-duration: 1s;
+  --delay-init-load: 0s;
+  --duration-breach-in: 0.4s;
 
-  --game-delay: calc(var(--app-delay) + var(--app-duration));
-  --game-duration: 0.2s;
+  --delay-breach-sections-in: calc(
+    var(--delay-init-load) + var(--duration-breach-in)
+  );
+  --duration-breach-sections-in: 0.2s;
 
-  --delay-matrix: var(--game-delay);
-  --duration-matrix: var(--game-duration);
+  --delay-before-idle: calc(
+    var(--delay-breach-sections-in) + var(--duration-breach-sections-in)
+  );
 
-  --delay-timer: var(--game-delay);
-  --duration-timer: var(--game-duration);
+  --duration-matrix-fade-out: 300ms;
+  --duration-header-fade-out: 500ms;
 
-  --delay-buffer-title: var(--game-delay);
-  --duration-buffer-title: var(--game-duration);
-
-  --delay-buffer: calc(var(--game-delay) + var(--game-duration));
-  --duration-buffer: var(--game-duration);
-
-  --delay-sequences: var(--game-delay);
-  --duration-sequences: var(--game-duration);
-
-  --delay-sequences-body: calc(var(--game-delay) + var(--game-duration));
-  --duration-sequences-body: var(--game-duration);
-
-  --delay-before-idle: calc(var(--game-delay) + var(--game-duration) * 2);
-
+  --duration-code-pick: 500ms;
+  --delay-code-pick-2nd-stage: calc(var(--code-pick-duration) * 0.6);
+  --duration-code-pick-2nd-stage: calc(var(--code-pick-duration) * 0.4);
 
   --code-pick-duration: 500ms;
   --code-pick-2nd-stage-delay: calc(var(--code-pick-duration) * 0.6);
@@ -46,7 +34,22 @@
   }
 }
 
-@keyframes anim__scale-x-in {
+.animate-scale-from-left {
+  @apply opacity-0 origin-left scale-x-0;
+
+  --duration: var(--duration-breach-sections-in);
+  --delay: var(--delay-breach-sections-in);
+
+  animation: anim__scale-from-left var(--duration) var(--delay) ease 1 forwards;
+
+  &[data-2ed-delay="true"] {
+    --delay: calc(
+      var(--delay-breach-sections-in) + var(--duration-breach-sections-in)
+    );
+  }
+}
+
+@keyframes anim__scale-from-left {
   0% {
     transform: scaleX(0);
     opacity: 0;
@@ -63,69 +66,81 @@
   }
 }
 
+.anim__scale-form-top {
+  @apply origin-top scale-y-0;
+
+  --duration: var(--duration-breach-sections-in);
+  --delay: var(--delay-breach-sections-in);
+  animation: anim__scale-from-top var(--duration) var(--delay) ease 1 forwards;
+
+  &[data-2ed-delay="true"] {
+    --delay: calc(
+      var(--delay-breach-sections-in) + var(--duration-breach-sections-in)
+    );
+  }
+}
+
+@keyframes anim__scale-from-top {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-blink-in {
+  @apply opacity-0;
+  --duration: 400ms;
+  --delay: var(--delay-before-idle);
+
+  animation: anim__blink-in var(--duration) var(--delay) ease 1 forwards;
+}
+
 @keyframes anim__blink-in {
-  0%,55%,60% {
+  0%,
+  55%,
+  60% {
     opacity: 0;
   }
-  25%,30% {
+  25%,
+  30% {
     opacity: 0.4;
   }
-  85%,100% {
+  85%,
+  100% {
     opacity: 1;
   }
 }
 
-@function percent($total, $value) {
-  @return calc($value / $total) * 100%;
-}
-
-@mixin make_glitch_fade_in_out_loop($keyframesName, $className, $opts) {
-  $stage_1_dur: map.get($opts, idle_before) + map.get($opts, idle_to_hidden) +
-    map.get($opts, hidden);
-
-  $stage_2_dur: $stage_1_dur + map.get($opts, blink_to_shown) +
-    map.get($opts, blink_to_hidden) + map.get($opts, blink_hidden);
-
-  $stage_3_dur: $stage_2_dur + map.get($opts, blink_to_shown) +
-    map.get($opts, blink_to_hidden) + map.get($opts, blink_hidden);
-
-  $total_dur: $stage_3_dur + map.get($opts, blink_to_shown) +
-    map.get($opts, idle_after);
-
-  .#{$className} {
-    animation: $keyframesName $total_dur map.get($opts, anim_delay) infinite;
+@keyframes anim__scale-y-blink-in {
+  0%,
+  20% {
+    transform: scaleY(0);
+    opacity: 1;
   }
-
-  @keyframes #{$keyframesName} {
-    0%,
-    #{percent($total_dur, map.get($opts, idle_before))} {
-      opacity: 1;
-    }
-
-    #{percent($total_dur, map.get($opts, idle_before) + map.get($opts, idle_to_hidden))},
-    #{percent($total_dur, $stage_1_dur)} {
-      opacity: 0;
-    }
-
-    #{percent($total_dur, $stage_1_dur + map.get($opts, blink_to_shown))} {
-      opacity: 0.1;
-    }
-    #{percent($total_dur, $stage_1_dur + map.get($opts, blink_to_shown) + map.get($opts, blink_to_hidden))},
-    #{percent($total_dur, $stage_2_dur)} {
-      opacity: 0;
-    }
-
-    #{percent($total_dur, $stage_2_dur + map.get($opts, blink_to_shown))} {
-      opacity: 0.5;
-    }
-    #{percent($total_dur, $stage_2_dur + map.get($opts, blink_to_shown) + map.get($opts, blink_to_hidden))},
-    #{percent($total_dur, $stage_3_dur)} {
-      opacity: 0;
-    }
-
-    #{percent($total_dur, $stage_3_dur + map.get($opts, blink_to_shown))},
-    100% {
-      opacity: 1;
-    }
+  25%,
+  30% {
+    opacity: 0.2;
+  }
+  40%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  60% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  75%,
+  80% {
+    opacity: 0.4;
+  }
+  90%,
+  100% {
+    transform: scaleY(1);
+    opacity: 1;
   }
 }

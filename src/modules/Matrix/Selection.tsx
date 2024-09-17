@@ -13,23 +13,23 @@ interface IProps {
 export const MatrixSelection = ({ direction, selection }: IProps) => {
   const hoveredCode = useAppStore((s) => s.hoveredCode);
 
-  let topMutli = 0;
-  let leftMutli = 0;
+  let topMulti = 0;
+  let leftMulti = 0;
   let marginTopMulti = 1;
   let width = "100%";
   let height = "var(--matrix-code-size)";
 
   if (direction === MatrixSelectionDirection.ROW) {
     if (selection.direction === MatrixSelectionDirection.ROW)
-      topMutli = selection.value;
-    else if (hoveredCode) topMutli = hoveredCode.row;
+      topMulti = selection.value;
+    else if (hoveredCode) topMulti = hoveredCode.row;
   } else {
     width = "var(--matrix-code-size)";
     height = "calc(100% + var(--matrix-inner-py) * 2)";
     marginTopMulti = -1;
     if (selection.direction === MatrixSelectionDirection.COL) {
-      leftMutli = selection.value;
-    } else if (hoveredCode) leftMutli = hoveredCode.col;
+      leftMulti = selection.value;
+    } else if (hoveredCode) leftMulti = hoveredCode.col;
   }
 
   const isSupporting = direction !== selection.direction;
@@ -42,8 +42,8 @@ export const MatrixSelection = ({ direction, selection }: IProps) => {
       })}
       style={{
         marginTop: `calc(var(--matrix-inner-py) * ${marginTopMulti})`,
-        top: `calc(${topMutli} * var(--matrix-code-size))`,
-        left: `calc(${leftMutli} * var(--matrix-code-size))`,
+        top: `calc(${topMulti} * var(--matrix-code-size))`,
+        left: `calc(${leftMulti} * var(--matrix-code-size))`,
         width,
         height,
         opacity: !isSupporting ? 1 : hoveredCode != null ? 1 : 0,

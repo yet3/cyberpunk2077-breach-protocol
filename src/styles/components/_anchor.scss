@@ -1,0 +1,5 @@
+@layer components {
+  .anchor-text {
+    @apply text-primary-500 underline;
+  }
+}

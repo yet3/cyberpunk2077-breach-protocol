@@ -1,20 +1,32 @@
-# Cyberpunk 2077 Breach Protocol
+<h1 align="center">
+ <img src="./public/favicon.svg" alt="Breach Protocol icon" width="100px" /> 
+ <p>Cyberpunk 2077 Breach Protocol</p>
+</h1>
 
-### Breach's seed explained
-1725055608583
+### About
+A fan recreation of the hacking mini-game "Breach Protocol" from [Cyberpunk 2077](https://www.cyberpunk.net).
 
-20T8745789
+You can play it [here](https://cyberpunk2077-breach-protocol.vercel.app/)
+![Breach Protocol gif](./public/cover.gif)
 
-9X09Y25T09B35354244314345393741K01030104S0301S04040102S8745789
+### Motivation
+I'm a pretty big Cyberpunk fan (even if the game at launch was a mess of bugs), so when I was thinking about my next project, I wanted to make something in that cyberpunk aesthetic. The hacking mechanic was a perfect fit.
 
-5X - matrix cols
-5Y - matrix rows
-60T - length of the run in seconds (0 means inifnite time)
-5B - size of the buffer
-35354244314345393741K - avaialbe codes in hex default: 55,BD,1C,E9,7A; each codes has to be 2 chars (max 99 codes)
-01030104S - sequence, can be any length, it's made of indexes of codes, each index is 2 bits
-0301S
-04040102S
-8745789 - random number
+### Built with
+- [pnpm](https://pnpm.io)
+- [biome](https://biomejs.dev)
+- [rsbuild](https://rsbuild.dev)
+- [typescript](https://www.typescriptlang.org)
+- [react](https://react.dev)
+- [@tanstack/react-router](https://tanstack.com/router/latest/docs/framework/react/overview)
+- [tailwindcss](https://tailwindcss.com)
+- [zustand](https://github.com/pmndrs/zustand)
+- [mutative](https://github.com/unadlib/mutative)
 
+### TODO
+- [ ] Add custom breach creator
+- [ ] Add page background animation
+- [ ] Add SFX maybe?
 
+### Inspired by
+- [Cyberpunk 2077](https://www.cyberpunk.net)

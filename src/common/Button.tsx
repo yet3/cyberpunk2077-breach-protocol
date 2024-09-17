@@ -8,6 +8,7 @@ export enum ButtonVariant {
 }
 
 interface IProps {
+  className?: string;
   content: ReactNode;
   variant?: ButtonVariant;
 
@@ -15,6 +16,7 @@ interface IProps {
 }
 
 export const Button = ({
+  className,
   content,
   onClick,
   variant = ButtonVariant.PRIMARY,
@@ -23,11 +25,11 @@ export const Button = ({
     <button
       type="button"
       onClick={onClick}
-      className={clsx({
-        "ribbon-br ribbon-border rb-bg-page px-4 py-2": true,
-        "rb-primary-500 text-primary-500": variant === ButtonVariant.PRIMARY,
-        "rb-success-500 text-success-500": variant === ButtonVariant.SUCCESS,
-        "rb-danger-500 text-danger-500": variant === ButtonVariant.DANGER,
+      className={clsx(className, {
+        "button-base": true,
+        "button-primary": variant === ButtonVariant.PRIMARY,
+        "button-success": variant === ButtonVariant.SUCCESS,
+        "button-danger": variant === ButtonVariant.DANGER,
       })}
     >
       {content}

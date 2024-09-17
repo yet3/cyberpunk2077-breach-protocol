@@ -1,14 +1,10 @@
 import { ModelLineTextDecoration } from "@common/ModelLineTextDecoration";
 import { SystemImageDecoration } from "@common/SystemImageDecoration";
-import { useAppStore, useAppStoreShallow } from "@contexts/AppStoreCtx";
-import {
-  DAILY_BREACH_STATUS_KEY,
-  DAILY_BREACH_TIMESTAMP_KEY,
-} from "@lib/const.lib";
-import { selectBreachFinishDetials } from "@stores/root.store";
-import { BreachDailyStatus } from "@typings/Breach.types";
+import { useAppStoreShallow } from "@contexts/AppStoreCtx";
+import { selectBreachFinishDetails } from "@stores/root.store";
 import clsx from "clsx";
 import { useEffect, useState } from "react";
+import { isDailyBreach, saveDailyBreachFinish } from "../../../lib/daily";
 import { MatrixFinishButton } from "./Button";
 import { MatrixFinishCode } from "./Code";
 import { MatrixFinishHeader } from "./Header";
@@ -17,33 +13,22 @@ import {
   FINISH_CONTENT_DUR,
   FINISH_DELAY,
   FINISH_HEADER_DUR,
-} from "./const";
+} from "./consts";
 
 export const MatrixFinish = () => {
-  const finishDetails = useAppStoreShallow(selectBreachFinishDetials);
-  const [resetBreach, newBreach] = useAppStoreShallow((s) => [s.resetBreach, s.newBreach]);
+  const finishDetails = useAppStoreShallow(selectBreachFinishDetails);
+  const [restartBreach, newBreach] = useAppStoreShallow((s) => [
+    s.restartBreach,
+    s.newBreach,
+  ]);
   const [isCodeFinished, setIsCodeFinished] = useState(false);
 
-  // TODO: COUlD be better, maybe make a helper for startOfday
+  const isDaily = isDailyBreach();
+
   useEffect(() => {
-    if (!finishDetails) return;
-
-    console.log(finishDetails);
-    const startOfDay = new Date();
-    startOfDay.setHours(0, 0, 0, 0);
-
-    localStorage.setItem(
-      DAILY_BREACH_TIMESTAMP_KEY,
-      startOfDay.getTime().toString(),
-    );
-
-    localStorage.setItem(
-      DAILY_BREACH_STATUS_KEY,
-      finishDetails.isSuccess
-        ? BreachDailyStatus.SOLVED
-        : BreachDailyStatus.FAILED,
-    );
-  }, [finishDetails]);
+    if (!finishDetails || !isDaily) return;
+    saveDailyBreachFinish(finishDetails.isSuccess);
+  }, [finishDetails, isDaily]);
 
   if (!finishDetails) return null;
   const { isSuccess, status } = finishDetails;
@@ -72,7 +57,9 @@ export const MatrixFinish = () => {
           })}
         >
           <MatrixFinishCode
-            {...{ isSuccess, isCodeFinished, setIsCodeFinished }}
+            isSuccess={isSuccess}
+            isCodeFinished={isCodeFinished}
+            setIsCodeFinished={setIsCodeFinished}
           />
 
           <div
@@ -101,26 +88,29 @@ export const MatrixFinish = () => {
           isSuccess={isSuccess}
           content="EXIT INTERFACE"
           onClick={() => {
-            window.open("about:blank");
+            window.location.href = "about:blank";
           }}
         />
         <MatrixFinishButton
           isSuccess={isSuccess}
           content="RETRY"
           onClick={() => {
-            resetBreach();
+            restartBreach();
           }}
         />
         <MatrixFinishButton
           isSuccess={isSuccess}
           content="NEXT BREACH"
           onClick={() => {
-            if (window.location.pathname.includes("/daily")) {
+            if (isDaily) {
               window.location.replace("/");
               return;
             }
 
-            newBreach();
+            window.history.pushState({}, document.title, "/");
+            newBreach({
+              seed: new Date().getTime(),
+            });
           }}
         />
       </footer>

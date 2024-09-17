@@ -1,83 +1,54 @@
-import { type RsbuildPlugin, defineConfig } from "@rsbuild/core";
+import { defineConfig } from "@rsbuild/core";
 import { pluginReact } from "@rsbuild/plugin-react";
 import { pluginSass } from "@rsbuild/plugin-sass";
 
 // @ts-ignore
 import { TanStackRouterRspack } from "@tanstack/router-plugin/rspack";
 
-// prove of concept
-// TODO: make an actual plugin
-const customPlug = (): RsbuildPlugin => {
-  return {
-    name: "my-plug",
-    setup: (api) => {
-      api.transform({}, (ctx) => {
-        if (!/\.tsx/.test(ctx.resourcePath)) {
-          return ctx.code;
-        }
-
-        let content = ctx.code;
-        const matches = content.match(/before:\(.+/);
-        if (matches) {
-          for (const match of matches) {
-            let opened = 1;
-            const strToParse = match.replace("before:(", "");
-            let toTransform = "";
-            for (const char of strToParse) {
-              toTransform += char;
-              if (char === "(") opened++;
-              else if (char === ")") opened--;
-
-              if (opened === 0) {
-                toTransform = toTransform.substring(0, toTransform.length - 1);
-                const styles = toTransform.split(" ");
-                const finalStlyes: string[] = [];
-                for (const sty of styles) {
-                  finalStlyes.push(`before:${sty}`);
-                }
-
-                const finalStr = finalStlyes.join(" ");
-                content = content.replace(`before:(${styles.join(' ')})`, finalStr);
-                break;
-              }
-            }
-          }
-        }
-
-        return content;
-      });
-    },
-  };
-};
-
-// TODO: Fill site metadata
 const AUTHOR = "Maksymilian Kasperowicz <yet3.dev@gmail.com>";
-const TITLE = "Cyberpunk Breach Protocol";
-const DESCRIPTION = "";
-const URL = "";
+const TITLE = "Cyberpunk 2077 // Breach Protocol";
+const DESCRIPTION =
+  "A fan recreation of hacking mini-game 'Breach Protocol' from Cybeprunk 2077";
+const URL = "https://cyberpunk2077-breach-protocol.vercel.app/";
 const LOCALE = "en_US";
 
-// TODO: Make a proper cover img
-const COVER_IMG = "/cover.jpeg";
+const COVER_IMG = "/cover.png";
 
 export default defineConfig({
-  plugins: [pluginReact(), pluginSass(), customPlug()],
+  plugins: [pluginReact(), pluginSass()],
   tools: {
     rspack: {
       plugins: [TanStackRouterRspack()],
     },
   },
-  output: {
-    manifest: "./public/manifest.json",
-  },
   html: {
     title: TITLE,
-    // favicon: "./public/favicon.svg",
-    // appIcon: "./public/favicon.svg",
+    favicon: "./public/favicon.svg",
+    appIcon: {
+      name: "Breach Protocol",
+      icons: [
+        {
+          src: "./src/assets/icon-512.png",
+          size: 512,
+          target: 'web-app-manifest'
+        },
+        {
+          src: "./src/assets/icon-192.png",
+          size: 192,
+          target: 'web-app-manifest'
+        },
+        {
+          src: "./src/assets/icon-180.png",
+          size: 180,
+          target: "apple-touch-icon",
+        },
+      ],
+    },
     meta: {
+      viewport: "width=device-width, initial-scale=1.0",
       author: AUTHOR,
-      // TODO : keywords
-      keywords: "",
+      keywords:
+        "cyberpunk, cyberpunk 2077, breach protocol, breach, breaching, neturnner, netrunning, buffer, datamine, code matrix, ice, daemons, sequences, ping, ram, access points, night city, quickhack, quickhacks, hack, hacking, game, mini-game, cd projekt, cd projekt red",
       description: DESCRIPTION,
       robots: "index, follow",
       canonical: URL,

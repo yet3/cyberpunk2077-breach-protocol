@@ -1,7 +1,4 @@
-import {
-  BreachFinishStauts,
-  type IBreachConfigParsed,
-} from "@typings/Breach.types";
+import { BreachFinishStatus } from "@typings/Breach.types";
 import { SequenceStatus } from "@typings/Sequences.types";
 import { type StateCreator, create } from "zustand";
 import { mutative } from "zustand-mutative";
@@ -9,17 +6,19 @@ import { subscribeWithSelector } from "zustand/middleware";
 import { type IBufferSlice, createBufferSlice } from "./buffer.slice";
 import { type IConfigSlice, createConfigSlice } from "./config.slice";
 import { type IGeneralSlice, createGeneralSlice } from "./general.slice";
+import { type IMatrixSlice, createMatrixSlice } from "./matrix.slice";
+import { type IPrngSlice, createPrngSlice } from "./prng.slice";
 import { type ISequencesSlice, createSequencesSlice } from "./sequences.slice";
 
-export type IRootStore = IBufferSlice &
-  ISequencesSlice &
-  IConfigSlice &
-  IGeneralSlice & {
-    resetBreach: () => void;
-    newBreach: () => void;
-    setSeed: (seed: number) => void;
-    setConfig: (config: IBreachConfigParsed) => void;
-  };
+export interface IRootStore
+  extends IBufferSlice,
+    ISequencesSlice,
+    IConfigSlice,
+    IMatrixSlice,
+    IPrngSlice,
+    IGeneralSlice {
+  resetStore: () => void;
+}
 
 export type TStoreSlice<T> = StateCreator<
   IRootStore,
@@ -28,7 +27,7 @@ export type TStoreSlice<T> = StateCreator<
   T
 >;
 
-export const createAppStore = (config: IBreachConfigParsed) => {
+export const createAppStore = () => {
   return create<
     IRootStore,
     [["zustand/subscribeWithSelector", never], ["zustand/mutative", never]]
@@ -36,35 +35,17 @@ export const createAppStore = (config: IBreachConfigParsed) => {
     subscribeWithSelector(
       mutative((set, get, ...a) => ({
         ...createGeneralSlice(set, get, ...a),
+        ...createConfigSlice(set, get, ...a),
+        ...createPrngSlice(set, get, ...a),
         ...createBufferSlice(set, get, ...a),
         ...createSequencesSlice(set, get, ...a),
+        ...createMatrixSlice(set, get, ...a),
 
-        ...createConfigSlice(config),
-
-        setSeed: (seed) => {
-          set((s) => {
-            s.config.seed = seed;
-          });
-        },
-        setConfig: (newConfig) => {
-          set((s) => {
-            s.config = newConfig;
-          });
-        },
-
-        newBreach: () => {
-          set((s) => {
-            s.resetBreach();
-            s.config.seed = new Date().getTime();
-          });
-        },
-
-        resetBreach: () => {
+        resetStore: () => {
           get().resetSequences();
           get().resetBuffer();
-
-          // Must be called last
           get().resetGeneral();
+          get().prng.reset();
         },
       })),
     ),
@@ -73,50 +54,49 @@ export const createAppStore = (config: IBreachConfigParsed) => {
 
 export type IAppStore = ReturnType<typeof createAppStore>;
 
-export const selectBreachFinishDetials = (
+export const selectBreachFinishDetails = (
   s: IRootStore,
-): { isSuccess: boolean; status: BreachFinishStauts } | null => {
+): { isSuccess: boolean; status: BreachFinishStatus } | null => {
   if (s.breachFinishedAt == null) {
     return null;
   }
 
-  let hasAnyInProgress = false;
-  let amtOfDaemonsUploaded = 0;
+  let amtOfUploaded = 0;
   let amtOfSolved = 0;
   for (const sequence of s.sequences) {
     if (sequence.status !== SequenceStatus.IN_PROGRESS) {
       if (sequence.status === SequenceStatus.SOLVED) amtOfSolved++;
-      amtOfDaemonsUploaded++;
-    } else hasAnyInProgress = true;
+      amtOfUploaded++;
+    }
   }
 
-  // Order of if statements matters here
+  const hasAnyInProgress = amtOfUploaded < s.sequences.length;
+
   if (amtOfSolved >= s.sequences.length) {
-    return { isSuccess: true, status: BreachFinishStauts.ALL_DAEMONS_UPLOADED };
+    return { isSuccess: true, status: BreachFinishStatus.ALL_DAEMONS_UPLOADED };
   }
 
   if (!hasAnyInProgress && amtOfSolved > 0) {
     return {
       isSuccess: true,
-      status: BreachFinishStauts.DAEMONS_UPLOADED,
+      status: BreachFinishStatus.DAEMONS_UPLOADED,
     };
   }
 
-  if (s.selectedCodes.length >= s.config.bufferSize) {
-    return { isSuccess: false, status: BreachFinishStauts.BUFFER_FULL };
-  }
-
-  // TODO: change status, must check in game
-  if (!hasAnyInProgress && amtOfSolved === 0) {
-    return { isSuccess: false, status: BreachFinishStauts.DAEMONS_UPLOADED };
+  if (
+    s.selectedCodes.length >= s.config.bufferSize ||
+    (!hasAnyInProgress && amtOfSolved === 0)
+  ) {
+    return { isSuccess: false, status: BreachFinishStatus.BUFFER_FULL };
   }
 
   if (s.breachFinishedAt != null) {
-    return { isSuccess: amtOfSolved > 0, status: BreachFinishStauts.TIMED_OUT };
+    return { isSuccess: amtOfSolved > 0, status: BreachFinishStatus.TIMED_OUT };
   }
 
   return null;
 };
 
-export const selectIsBreachFinished = (s: IRootStore): boolean =>
-  !!selectBreachFinishDetials(s);
+export const selectIsBreachFinished = (s: IRootStore): boolean => {
+  return !!selectBreachFinishDetails(s);
+};

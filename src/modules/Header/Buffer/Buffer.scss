@@ -1,9 +1,5 @@
-$delay: var(--code-pick-2nd-stage-delay);
-$dur: var(--code-pick-2nd-stage-duration);
-
-.buffer {
- animation: anim__scale-x-in var(--duration-buffer) var(--delay-buffer) ease 1 forwards;
-}
+$duration-code-pick: var(--duration-code-pick-2nd-stage);
+$delay-code-pick: var(--delay-code-pick-2nd-stage);
 
 .buffer-code {
   transition:
@@ -13,13 +9,13 @@ $dur: var(--code-pick-2nd-stage-duration);
 
 .buffer-code--filled {
   transition:
-    padding-bottom $dur $delay ease,
-    color $dur $delay ease,
-    outline $dur $delay ease;
+    padding-bottom $duration-code-pick $delay-code-pick ease,
+    color $duration-code-pick $delay-code-pick ease,
+    outline $duration-code-pick $delay-code-pick ease;
 
   &::after {
     @apply content-[""] inset-0 absolute w-full h-full opacity-0 bg-accent-500;
-    animation: anim__code-pick var(--code-pick-duration) ease 1;
+    animation: anim__code-pick var(--duration-code-pick) ease 1;
   }
 }
 

@@ -1,5 +1,5 @@
 import { useAppStore } from "@contexts/AppStoreCtx";
-import { isCodeSelectable } from "@lib/Matrix.lib";
+import { isCodeSelectable } from "@lib";
 import { selectIsCodeSelected } from "@stores/buffer.slice";
 import type { IMatrixCode, IMatrixSelection } from "@typings/Matrix.types";
 import clsx from "clsx";

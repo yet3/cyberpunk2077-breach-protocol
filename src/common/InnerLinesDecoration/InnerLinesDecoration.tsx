@@ -12,7 +12,7 @@ export const InnerLinesDecoration = ({ animateTo }: IProps) => {
       <div
         className={clsx({
           "animate-inner-lines-decoration": true,
-          "w-[1px] h-full bg-primary-500/60 absolute top-0": true,
+          "w-1px h-full bg-primary-500/60 absolute top-0": true,
           "left-3": isOnLeft,
           "right-3": !isOnLeft,
         })}
@@ -25,7 +25,7 @@ export const InnerLinesDecoration = ({ animateTo }: IProps) => {
       <div
         className={clsx({
           "animate-inner-lines-decoration": true,
-          "w-[1px] h-full bg-primary-500/45 absolute top-0": true,
+          "w-1px h-full bg-primary-500/45 absolute top-0": true,
           "left-7": isOnLeft,
           "right-7": !isOnLeft,
         })}
@@ -38,7 +38,7 @@ export const InnerLinesDecoration = ({ animateTo }: IProps) => {
       <div
         className={clsx({
           "animate-inner-lines-decoration": true,
-          "w-[1px] h-full bg-primary-500/30 absolute top-0": true,
+          "w-1px h-full bg-primary-500/30 absolute top-0": true,
           "left-14": isOnLeft,
           "right-14": !isOnLeft,
         })}

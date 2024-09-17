@@ -1,22 +1,39 @@
-// TODO: add fonts as files
-// TODO: re-think font choices
-@import url("https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400..900&display=swap");
-// @import url("https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@100;300;400;500;700;800;900&display=swap");
-// @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap');
-// @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap");
-
+@import "./fonts";
 @import "./theme";
 @import "./anims";
+@import "./components";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 html {
-  // font-family: "Anek Devanagari";
   font-family: "Maven Pro";
-  // font-family: "M PLUS 1p";
   @apply text-white bg-page;
+
+  overflow: hidden;
+  @media (min-width: theme("screens.sm")) {
+    overflow-y: auto;
+  }
+
+  @media (min-width: theme("screens.md")) {
+    overflow-x: hidden;
+  }
+}
+
+.breach-layout-grid {
+  @apply grid justify-start;
+  grid-template-columns: 1fr;
+  column-gap: var(--breach-content-x-gap);
+
+  @media (min-width: theme("screens.lg")) {
+    grid-template-columns: var(--matrix-width) 1fr;
+  }
+}
+
+.breach-layout-px {
+  padding-left: var(--breach-inner-pl);
+  padding-right: var(--breach-inner-pr);
 }
 
 #modals {
@@ -26,4 +43,3 @@ html {
     pointer-events: all;
   }
 }
-

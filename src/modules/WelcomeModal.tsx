@@ -1,18 +1,38 @@
+import { Anchor, AnchorKind } from "@common/Anchor";
+import { GitHubIcon } from "@common/Icons/GitHubIcon";
 import { Modal } from "@common/Modal";
 import { ModalButton } from "@common/Modal";
-import { useState } from "react";
-
-const WELCOME_MODAL_STORAGE_KEY = "should_welcome_modal_open_4";
+import {
+  CYBERPUNK_GAME_HREF,
+  GITHUB_REPO_HREF,
+  GITHUB_REPO_NEW_ISSUE_HREF,
+  WELCOME_MODAL_DELAY,
+  WELCOME_MODAL_STORAGE_KEY,
+} from "@lib";
+import { useEffect, useState } from "react";
 
 const getStorageState = (): boolean => {
   return (localStorage.getItem(WELCOME_MODAL_STORAGE_KEY) || "true") === "true";
 };
 
-// TODO: welcome modal, write some text about this project
 export const WelcomeModal = () => {
   const [isOpen, setIsOpen] = useState(getStorageState());
+  const [canShow, setCanShow] = useState(false);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    let timeout: NodeJS.Timeout | null = setTimeout(() => {
+      setCanShow(true);
+      timeout = null;
+    }, WELCOME_MODAL_DELAY);
+
+    return () => {
+      if (timeout != null) {
+        clearTimeout(timeout);
+      }
+    };
+  }, []);
+
+  if (!isOpen || !canShow) return null;
 
   let greeting = "Good morning";
   const hour = new Date().getHours();
@@ -22,18 +42,51 @@ export const WelcomeModal = () => {
   return (
     <Modal
       width="500px"
-      header={"Cyberpunk 2077 Breach Protocol"}
+      header={`${greeting}, Night city!`}
       body={
-        <div className="flex flex-col">
-          <p>{greeting}, Night city!</p>
-          <a
-            className="mt-2 text-primary-500 underline"
-            href="https://www.cyberpunk.net"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Check out Cyberpunk 2077
-          </a>
+        <div className="flex flex-col leading-relaxed">
+          <p>
+            Jack into this{" "}
+            <Anchor
+              href="https://www.maxkasperowicz.com"
+              kind={AnchorKind.TEXT}
+              content="fan-made"
+            />{" "}
+            recreation of the hacking mini-game from CD PROJEKT's{" "}
+            <Anchor
+              href={CYBERPUNK_GAME_HREF}
+              kind={AnchorKind.TEXT}
+              content="Cyberpunk 2077"
+            />
+            . Breach through ICE, and enjoy the ride in the data stream.
+          </p>
+
+          <div className="flex justify-stretch w-full space-x-4 mt-1 mb-3">
+            <Anchor
+              className="mt-2 text-primary-500 rb-bg-modal flex-2"
+              href="https://www.cyberpunk.net"
+              content="Get Cyberpunk 2077 here"
+            />
+            <Anchor
+              className="mt-2 text-primary-500 rb-bg-modal flex-1"
+              href={GITHUB_REPO_HREF}
+              content={
+                <div className="flex">
+                  <GitHubIcon className="fill-primary-500 mr-2" /> Project's
+                  repo
+                </div>
+              }
+            />
+          </div>
+          <p>
+            If something glitches, hit up GitHub and{" "}
+            <Anchor
+              href={GITHUB_REPO_NEW_ISSUE_HREF}
+              kind={AnchorKind.TEXT}
+              content="open a ticket"
+            />
+            .
+          </p>
         </div>
       }
       footer={

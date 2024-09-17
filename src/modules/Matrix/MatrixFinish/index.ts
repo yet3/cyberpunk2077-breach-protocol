@@ -1,2 +1,2 @@
-import './MatrixFinish.scss';
-export * from './MatrixFinish'
+import "./MatrixFinish.scss";
+export * from "./MatrixFinish";

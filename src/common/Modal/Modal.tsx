@@ -35,10 +35,13 @@ export const Modal = ({
       )}
     >
       {!noBackdrop && (
-        <div className="absolute inset-0 w-full h-full before:w-full before:h-full before:absolute before:bg-[url('@assets/noise.webp')] before:opacity-[0.03] after:absolute after:inset-0 after:w-full after:h-full after:bg-accent-300/10" />
+        <div className="absolute inset-0 w-full h-full before:w-full before:h-full before:absolute before:bg-[url('@assets/noise.webp')] before:opacity-[0.05] after:absolute after:inset-0 after:w-full after:h-full after:bg-accent-300/10" />
       )}
 
-      <aside className="flex flex-col" style={{ width }}>
+      <aside
+        className="flex flex-col"
+        style={{ width, animation: "anim__scale-y-blink-in 0.4s ease 1" }}
+      >
         <div className="relative">
           <div
             className={clsx(

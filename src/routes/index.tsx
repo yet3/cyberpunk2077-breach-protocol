@@ -1,14 +1,8 @@
-import { BreachRun } from "@modules/BreachRun/BreachRun";
+import { BreachRun } from "@modules/Breach";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: () => {
-    return (
-      <BreachRun
-        config={{
-          seed: 481,
-        }}
-      />
-    );
+    return <BreachRun seed={new Date().getTime()} />;
   },
 });

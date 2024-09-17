@@ -3,7 +3,6 @@ import {
   type IRootStore,
   createAppStore,
 } from "@stores/root.store";
-import type { IBreachConfig, } from "@typings/Breach.types";
 import {
   type PropsWithChildren,
   createContext,
@@ -12,28 +11,16 @@ import {
 } from "react";
 import { useStore } from "zustand";
 import { useShallow } from "zustand/shallow";
-import { usePrng } from "./PrngCtx";
 
 const AppStoreCtx = createContext<IAppStore | null>(null);
 
-type IProps = PropsWithChildren<{
-  userConfig: IBreachConfig;
-}>;
+type IProps = PropsWithChildren;
 
-// TODO: think about
-//
-// enum BreachDificullty {
-//   EASY = "GONK",
-//   NORMAL = "SOLO",
-//   HARD = "EDGERUNNER",
-// }
-
-export const AppStoreProvider = ({ userConfig, children }: IProps) => {
+export const AppStoreProvider = ({ children }: IProps) => {
   const storeRef = useRef<IAppStore>();
-  const prng = usePrng();
 
   if (!storeRef.current) {
-    storeRef.current = createAppStore(prng.generateBreachConfig(userConfig));
+    storeRef.current = createAppStore();
   }
 
   return (
@@ -54,9 +41,9 @@ export const getAppStore = () => {
 type IUseAppStoreSelector<U> = (state: IRootStore) => U;
 
 export const useAppStore = <U,>(selector: IUseAppStoreSelector<U>) => {
-  const store = getAppStore();
-  return useStore(store, selector);
+  return useStore(getAppStore(), selector);
 };
 
-export const useAppStoreShallow = <U,>(selector: IUseAppStoreSelector<U>) =>
-  useAppStore(useShallow(selector));
+export const useAppStoreShallow = <U,>(selector: IUseAppStoreSelector<U>) => {
+  return useAppStore(useShallow(selector));
+};

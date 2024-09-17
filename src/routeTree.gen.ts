@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as SeedImport } from './routes/$seed'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
@@ -25,6 +26,11 @@ const DailyLazyRoute = DailyLazyImport.update({
   path: '/daily',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/daily.lazy').then((d) => d.Route))
+
+const SeedRoute = SeedImport.update({
+  path: '/$seed',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -42,6 +48,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/$seed': {
+      id: '/$seed'
+      path: '/$seed'
+      fullPath: '/$seed'
+      preLoaderRoute: typeof SeedImport
+      parentRoute: typeof rootRoute
+    }
     '/daily': {
       id: '/daily'
       path: '/daily'
@@ -54,7 +67,11 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren({ IndexRoute, DailyLazyRoute })
+export const routeTree = rootRoute.addChildren({
+  IndexRoute,
+  SeedRoute,
+  DailyLazyRoute,
+})
 
 /* prettier-ignore-end */
 
@@ -65,11 +82,15 @@ export const routeTree = rootRoute.addChildren({ IndexRoute, DailyLazyRoute })
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/$seed",
         "/daily"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/$seed": {
+      "filePath": "$seed.tsx"
     },
     "/daily": {
       "filePath": "daily.lazy.tsx"

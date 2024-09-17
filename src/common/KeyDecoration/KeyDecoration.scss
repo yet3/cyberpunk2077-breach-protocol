@@ -1,18 +1,30 @@
-@use "@styles/anims" as anims;
+@use "@styles/timed_keyframes" as *;
 
-@include anims.make_glitch_fade_in_out_loop(
-  anim__key_decoration,
-  animte-key-decoration,
-  (
-    anim_delay: var(--delay-before-idle),
-    idle_before: 1s,
-    idle_after: 9s,
-
-    idle_to_hidden: 0.5s,
-    hidden: 1s,
-    blink_to_shown: 0.1s,
-    blink_to_hidden: 0.1s,
-    blink_hidden: 0.1s,
+@include timed_keyframes(
+    anim__key_decoration,
+    (shown 1s),
+    (hidden 0.5s 1s),
+    (opacity_01 0.1s),
+    (hidden 0.1s 0.1s),
+    (opacity_05 0.1s),
+    (hidden 0.1s 0.1s),
+    (shown 0.1s 9s)
   )
-);
+  using ($step) {
+  @if $step == shown {
+    opacity: 1;
+  } @else if $step == hidden {
+    opacity: 0;
+  } @else if $step == opacity_01 {
+    opacity: 0.1;
+  } @else if $step == opacity_05 {
+    opacity: 0.5;
+  }
+}
 
+.animate-key-decoration {
+  animation-name: anim__key_decoration;
+  animation-duration: var(--duration-anim__key_decoration);
+  animation-delay: var(--delay-before-idle);
+  animation-iteration-count: infinite;
+}

@@ -7,7 +7,7 @@ import {
   FAILURE_CODE,
   FINISH_CODE_DUR,
   SUCCESS_CODE,
-} from "./const";
+} from "./consts";
 
 interface IProps {
   isSuccess: boolean;
@@ -75,7 +75,7 @@ export const MatrixFinishCode = ({
   return (
     <div
       className={clsx({
-        "matrix-finish__code font-medium w-full border-l border-r py-4 px-8 whitespace-pre-line leading-tight text-base": true,
+        "matrix-finish__code font-medium w-full border-l border-r py-4 2xl:px-8 px-4 whitespace-pre-line leading-tight text-base": true,
         "border-success-400 bg-success-500 text-success-400": isSuccess,
         "border-danger-400 bg-danger-500 text-danger-300": !isSuccess,
       })}
