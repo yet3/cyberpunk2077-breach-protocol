@@ -29,7 +29,7 @@ module.exports = {
       zIndex: {
         1: 1,
         modals: 1000,
-        mobileBlocker: 9999,
+        "screen-blocker": 9999,
       },
       fontSize: {
         "3px": "0.1875rem",
@@ -51,7 +51,7 @@ module.exports = {
         "3px": "3px",
       },
       borderRadius: {
-        "xs": "1px",
+        xs: "1px",
       },
       dropShadow: {
         "primary-500": "0 0px 8px hsl(var(--primary-500) / 20%)",
@@ -108,7 +108,10 @@ module.exports = {
       },
 
       screens: {
-        sm: "624px",
+        blocked: "360px",
+        "2xs": "400px",
+        xs: "450px",
+        sm: "575px",
         md: "768px",
         lg: "1024px",
         xl: "1280px",
