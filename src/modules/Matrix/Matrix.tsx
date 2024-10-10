@@ -75,7 +75,7 @@ export const Matrix = () => {
   };
 
   return (
-    <div className="animate-scale-from-left relative lg:mt-0 lg:mb-0 mt-4 sm:mb-28 xs:mb-16 mb-4">
+    <div className="animate-scale-from-left relative lg:mt-0 lg:mb-0 mt-4 sm:mb-28 xs:mb-16 mb-8">
       {isBreachFinished && <MatrixFinish />}
       <div
         style={{
