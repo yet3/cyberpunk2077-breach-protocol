@@ -32,7 +32,7 @@ export const Buffer = () => {
                   key={`${bufferSize}-${idx}`}
                   className={clsx({
                     "xs:size-8 size-6": true,
-                    "buffer-code text-lg grid place-items-center relative text-primary-500": true,
+                    "buffer-code sm:text-lg text-base grid place-items-center relative text-primary-500": true,
                     "pb-1": !isFilled,
                     //
                     // Active
