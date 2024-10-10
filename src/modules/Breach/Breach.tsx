@@ -8,8 +8,8 @@ import { BreachBottomActions } from "@modules/Breach/BottomActions";
 import { DebugInfoLazy } from "@modules/Dev";
 import { Header } from "@modules/Header";
 import { Matrix } from "@modules/Matrix";
-import { MobileBlocker } from "@modules/MobileBlocker";
 import { Sequences } from "@modules/Sequences";
+import { SmallScreenBlocker } from "@modules/SmallScreenBlocker";
 import { WelcomeModal } from "@modules/WelcomeModal";
 import type { IBreachConfig } from "@typings/Breach.types";
 import { SequenceStatus } from "@typings/Sequences.types";
@@ -27,7 +27,7 @@ export const BreachRun = ({ seed, config: userConfig }: IProps) => {
     <AppStoreProvider>
       <Breach seed={seed} userConfig={userConfig} />
       <WelcomeModal />
-      <MobileBlocker />
+      <SmallScreenBlocker />
       <DebugInfoLazy />
     </AppStoreProvider>
   );
@@ -79,7 +79,7 @@ const Breach = ({
   if (!hasStarted) return null;
 
   return (
-    <div className="w-screen h-screen flex flex-col items-center justify-start space-y-4 pt-4 pb-4 game-ui">
+    <div className="w-screen min-h-screen flex flex-col items-center justify-start space-y-4 pt-4 pb-4 game-ui">
       <BreachTopDecorations />
 
       <div
@@ -92,10 +92,10 @@ const Breach = ({
 
         <Header />
 
-        <div className="breach-layout-grid breach-layout-px">
+        <main className="breach-layout-grid breach-layout-px">
           <Matrix />
           <Sequences />
-        </div>
+        </main>
       </div>
 
       <BreachBottomActions />

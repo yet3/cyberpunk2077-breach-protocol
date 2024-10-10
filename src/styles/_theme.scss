@@ -1,28 +1,28 @@
 :root {
-  --breach-outer-px: 25px;
-  --breach-inner-pt: 3rem;
-  --breach-inner-pb: 3rem;
-  --breach-inner-pl: 2rem;
-  --breach-inner-pr: 2rem;
+  --breach-outer-px: 2px;
+  --breach-inner-pt: 1rem;
+  --breach-inner-pb: 1rem;
+  --breach-inner-pl: 0.5rem;
+  --breach-inner-pr: 0.5rem;
   --breach-content-x-gap: 28px;
   --breach-content-y-gap: 18px;
 
   // Matrix
-  --matrix-width: 425px;
-  --matrix-code-size: 56px;
-  --matrix-code-font-size: 20px;
-  --matrix-inner-py: 24px;
-  --matrix-inner-px: 70px;
+  --matrix-width: 100%;
+  --matrix-code-size: 48px;
+  --matrix-code-font-size: 18px;
+  --matrix-inner-py: 12px;
+  --matrix-inner-px: 16px;
   --bg-matrix-primary-selection: hsl(247.5 20% 15.69%);
   --bg-matrix-secondary-selection: hsl(72.18 98.52% 26.47% / 15%);
 
   // Sequences
   --sequences-inner-py: 12px;
-  --sequences-inner-px: 16px;
-  --sequences-code-font-size: 18px;
-  --sequences-code-size: 40px;
-  --sequences-codes-gap: 8px;
-  --sequences-sticks-out-by: 12px;
+  --sequences-inner-px: 6px;
+  --sequences-code-font-size: 15px;
+  --sequences-code-size: 32px;
+  --sequences-codes-gap: 0px;
+  --sequences-sticks-out-by: -var(--breach-inner-pr);
   --bg-sequences-highlight: hsl(248 20% 16%);
 
   // Colors
@@ -51,10 +51,42 @@
   --danger-800: 1 80% 14%;
   --danger-900: 1 60% 8%;
 
+  @media (min-width: theme("screens.xs")) {
+    --breach-outer-px: 16px;
+    --breach-inner-pt: 1.5rem;
+    --breach-inner-pb: 1.5rem;
+    --breach-inner-pl: 0.75rem;
+    --breach-inner-pr: 0.75rem;
+
+    // Matrix
+    --matrix-width: 425px;
+    --matrix-code-size: 56px;
+    --matrix-code-font-size: 20px;
+    --matrix-inner-py: 24px;
+    --matrix-inner-px: 70px;
+
+    // Sequences
+    --sequences-inner-px: 12px;
+    --sequences-code-font-size: 17px;
+    --sequences-code-size: 36px;
+    --sequences-codes-gap: 4px;
+    --sequences-sticks-out-by: 4px;
+  }
+
+  @media (min-width: theme("screens.sm")) {
+    // Sequences
+    --sequences-inner-py: 12px;
+    --sequences-inner-px: 16px;
+    --sequences-code-font-size: 18px;
+    --sequences-code-size: 40px;
+    --sequences-codes-gap: 8px;
+    --sequences-sticks-out-by: 8px;
+  }
 
   @media (min-width: theme("screens.lg")) {
     --breach-outer-px: 45px;
     --breach-content-x-gap: 28px;
+    --breach-inner-pt: 3.5rem;
     --breach-content-y-gap: 26px;
 
     // Matrix
@@ -75,7 +107,6 @@
     --breach-content-y-gap: 32px;
 
     // Matrix
-    --matrix-width: 450px;
     --matrix-inner-py: 24px;
     --matrix-inner-px: 70px;
     --bg-matrix-primary-selection: hsl(247.5 20 15.69);
@@ -84,7 +115,6 @@
 
   @media (min-width: theme("screens.2xl")) {
     --breach-outer-px: 80px;
-    --breach-inner-pt: 3.5rem;
     --breach-inner-pb: 3.5rem;
     --breach-inner-pl: 3rem;
     --breach-inner-pr: 3rem;

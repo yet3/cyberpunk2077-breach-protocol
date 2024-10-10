@@ -23,7 +23,7 @@ export const BreachSquaresDecoration = ({ delay }: IProps) => {
     <div
       className={clsx({
         "animate-breach-top-decoration-squares grid-cols-6 content-between h-14": true,
-        "2xl:ml-4 ml-2 lg:grid md:hidden grid 2xl:gap-x-4 gap-x-3": true,
+        "2xl:ml-4 ml-2 lg:grid md:hidden sm:grid 2xl:gap-x-4 gap-x-3 hidden": true,
       })}
       style={{
         // @ts-expect-error: custom css var

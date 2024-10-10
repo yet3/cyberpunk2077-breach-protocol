@@ -12,7 +12,7 @@ html {
   @apply text-white bg-page;
 
   overflow: hidden;
-  @media (min-width: theme("screens.sm")) {
+  @media (min-width: theme("screens.blocked")) {
     overflow-y: auto;
   }
 

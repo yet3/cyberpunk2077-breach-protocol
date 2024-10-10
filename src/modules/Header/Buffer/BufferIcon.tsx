@@ -7,6 +7,7 @@ interface IProps {
 export const BufferIcon = ({ className }: IProps) => (
   <svg
     width="30"
+    height="auto"
     viewBox="0 0 433 495"
     className={clsx("fill-primary-500", className)}
     xmlns="http://www.w3.org/2000/svg"

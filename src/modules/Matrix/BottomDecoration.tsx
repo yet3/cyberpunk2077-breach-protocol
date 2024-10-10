@@ -3,7 +3,7 @@ import { ProtocolIcon } from "./icons/ProtocolIcon";
 
 export const MatrixBottomDecoration = () => {
   return (
-    <div className="grid grid-cols-[auto,1fr,auto] lg:mt-2 mt-1 tabular-nums text-6px leading-[1.75] text-primary-500">
+    <div className="grid grid-cols-[auto,1fr,auto] lg:mt-2 mt-1 tabular-nums sm:text-6px text-4px leading-[1.75] text-primary-500">
       <div className="animate-matrix-filler-1 flex">
         <div className="flex flex-col leading-[1.1]">
           <ProtocolIcon className="mb-1" />
@@ -22,7 +22,7 @@ export const MatrixBottomDecoration = () => {
         </div>
       </div>
 
-      <div className="animate-matrix-filler-2 flex mt-1 lg:justify-between lg:space-x-0 space-x-4 lg:pl-2 pl-8 pr-6">
+      <div className="animate-matrix-filler-2 flex mt-1 lg:justify-between lg:space-x-0 sm:space-x-4 space-x-2 lg:pl-2 sm:pl-8 pl-4 sm:pr-6 pr-3">
         <div className="flex flex-col items-center">
           <p>2.24645 2 . 3 4 8 0</p>
           <p>0.45654 0 . 1 4 0 0</p>

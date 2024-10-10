@@ -17,7 +17,7 @@ export const BreachTopDecorations = () => {
       </div>
 
       <div
-        className="relative grid grid-cols-[1fr_auto] md:ml-4 md:mt-0 mt-6"
+        className="relative sm:grid hidden grid-cols-[1fr_auto] md:ml-4 md:mt-0 mt-6"
         style={{
           marginRight: "var(--breach-outer-px)",
         }}

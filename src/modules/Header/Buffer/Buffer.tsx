@@ -31,7 +31,8 @@ export const Buffer = () => {
                 <li
                   key={`${bufferSize}-${idx}`}
                   className={clsx({
-                    "buffer-code w-8 h-8 text-lg grid place-items-center relative text-primary-500": true,
+                    "xs:size-8 size-6": true,
+                    "buffer-code text-lg grid place-items-center relative text-primary-500": true,
                     "pb-1": !isFilled,
                     //
                     // Active

@@ -9,7 +9,7 @@ export const BreachBottomActions = () => {
 
   return (
     <nav
-      className="self-end flex space-x-4"
+      className="xs:self-end self-center flex space-x-4"
       style={{
         paddingRight: "var(--breach-outer-px)",
       }}

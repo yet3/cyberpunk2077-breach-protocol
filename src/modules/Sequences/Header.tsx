@@ -14,10 +14,10 @@ export const SequencesHeader = () => {
         <div className="w-2 h-2 bg-primary-500 rounded-full justify-self-end" />
         <div className="w-2 h-2 bg-primary-500 rounded-full justify-self-start" />
       </div>
-      <h3 className="2xl:text-lg xl:text-base text-sm">
+      <h3 className="2xl:text-lg xl:text-base xs:text-sm text-xs">
         SEQUENCE REQUIRED TO UPLOAD DAEMON
       </h3>
-      <ModelLineTextDecoration className="2xl:ml-24 xl:ml-12 ml-6 2xl:text-9px text-7px self-end mb-1" />
+      <ModelLineTextDecoration className="2xl:ml-24 xl:ml-12 ml-6 2xl:text-9px text-7px self-end mb-1 xs:inline hidden" />
     </header>
   );
 };

@@ -60,7 +60,9 @@ export const Timer = () => {
       </div>
 
       <div className="grid grid-cols-[1fr_auto] items-start pt-3 pb-1">
-        <h2 className="text-2xl">BREACH TIME REMAINING</h2>
+        <h2 className="sm:text-2xl text-xl self-center">
+          BREACH TIME REMAINING
+        </h2>
         <div className="flex justify-center border border-primary-500 py-1 w-20 tabular-nums lg:text-base text-lg">
           {time === 0 ? "NaN" : displayTime}
         </div>

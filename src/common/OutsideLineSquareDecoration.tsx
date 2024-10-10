@@ -9,7 +9,7 @@ export const OutsideLineSquareDecoration = ({ className, rectPos }: IProps) => {
   return (
     <div
       className={clsx(
-        "bg-primary-500 w-3px rounded-xs absolute z-1",
+        "bg-primary-500 w-3px rounded-xs absolute z-1 xs:flex hidden",
         className,
       )}
     >

@@ -23,7 +23,7 @@ export const BreachBorderDecorations = () => {
         rectPos="right-top"
       />
 
-      <CustomGlitchesTextDecoration className="absolute top-full mt-2" />
+      <CustomGlitchesTextDecoration className="absolute top-full mt-2 sm:block hidden" />
     </>
   );
 };
