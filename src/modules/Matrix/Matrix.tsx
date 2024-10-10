@@ -3,6 +3,7 @@ import { useAppStore, useAppStoreShallow } from "@contexts/AppStoreCtx";
 import { isCodeSelectable, isNodeACode } from "@lib";
 import { selectIsBreachFinished } from "@stores/root.store";
 import { MatrixSelectionDirection } from "@typings/Matrix.types";
+import clsx from "clsx";
 import type { MouseEvent } from "react";
 import { MatrixBottomDecoration } from "./BottomDecoration";
 import { Code } from "./Code";
@@ -75,7 +76,13 @@ export const Matrix = () => {
   };
 
   return (
-    <div className="animate-scale-from-left relative lg:mt-0 lg:mb-0 mt-4 sm:mb-28 xs:mb-16 mb-8">
+    <div
+      className={clsx({
+        "animate-scale-from-left relative lg:mt-0 mt-4 lg:mb-0": true,
+        "sm:mb-52 xs:mb-40 mb-32": matrixCols <= 5,
+        "sm:mb-32 xs:mb-20 mb-12": matrixCols >= 6,
+      })}
+    >
       {isBreachFinished && <MatrixFinish />}
       <div
         style={{
