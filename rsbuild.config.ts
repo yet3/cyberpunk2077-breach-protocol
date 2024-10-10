@@ -30,12 +30,12 @@ export default defineConfig({
         {
           src: "./src/assets/icon-512.png",
           size: 512,
-          target: 'web-app-manifest'
+          target: "web-app-manifest",
         },
         {
           src: "./src/assets/icon-192.png",
           size: 192,
-          target: 'web-app-manifest'
+          target: "web-app-manifest",
         },
         {
           src: "./src/assets/icon-180.png",
