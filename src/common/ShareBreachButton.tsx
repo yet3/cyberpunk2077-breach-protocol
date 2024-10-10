@@ -2,7 +2,11 @@ import { useAppStore } from "@contexts/AppStoreCtx";
 import { useEffect, useRef, useState } from "react";
 import { Button, ButtonVariant } from "./Button";
 
-export const ShareBreachButton = () => {
+interface IProps {
+  className?: string;
+}
+
+export const ShareBreachButton = ({ className }: IProps) => {
   const seed = useAppStore((s) => s.prng.seed);
   const [status, setStatus] = useState<"ok" | "fail" | "idle">("idle");
 
@@ -40,12 +44,13 @@ export const ShareBreachButton = () => {
 
   return (
     <Button
+      className={className}
       content={
         status === "ok"
-          ? "URL in Memory"
+          ? "URL IN MEMORY"
           : status === "fail"
-            ? "Transfer Error"
-            : "Share via URL"
+            ? "TRANSFER ERROR"
+            : "SHARE VIA URL"
       }
       variant={
         status === "ok"

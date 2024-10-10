@@ -3,7 +3,11 @@ import { DAILY_BREACH_STATUS_KEY } from "@lib";
 import { BreachDailyStatus } from "@typings/Breach.types";
 import { isSavedDailyBreachValidNow } from "../../../lib/daily";
 
-export const DailyBtn = () => {
+interface IProps {
+  className?: string;
+}
+
+export const DailyBtn = ({ className }: IProps) => {
   let variant = RouterLinkVariant.PRIMARY;
 
   if (isSavedDailyBreachValidNow()) {
@@ -15,5 +19,12 @@ export const DailyBtn = () => {
     }
   }
 
-  return <RouterLink to="/daily" content="DAILY BREACH" variant={variant} />;
+  return (
+    <RouterLink
+      to="/daily"
+      content="DAILY BREACH"
+      variant={variant}
+      className={className}
+    />
+  );
 };
