@@ -36,11 +36,11 @@ export const Buffer = () => {
                     "pb-1": !isFilled,
                     //
                     // Active
-                    "outline outline-accent-500 -outline-offset-1 text-accent-500 pb-1 code-glow animate-code-glow-pulse":
+                    "outline-1 outline outline-accent-500 -outline-offset-1 text-accent-500 pb-1 code-glow animate-code-glow-pulse":
                       isActive,
                     //
                     // Filled
-                    "buffer-code--filled outline outline-primary-500/60 -outline-offset-1":
+                    "buffer-code--filled outline outline-primary-500/60 -outline-offset-1 outline-1":
                       isFilled,
                   })}
                 >
