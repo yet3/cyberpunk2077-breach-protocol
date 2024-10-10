@@ -75,7 +75,7 @@ export const MatrixFinish = () => {
             </div>
 
             {isCodeFinished && (
-              <span className="matrix-finish__status text-xl font-medium opacity-0">
+              <span className="matrix-finish__status xs:text-xl text-lg font-medium opacity-0">
                 {status.replace(/_/g, " ")}
               </span>
             )}
@@ -85,6 +85,7 @@ export const MatrixFinish = () => {
 
       <footer className="matrix-finish__footer flex justify-end space-x-4 mt-3 -z-1">
         <MatrixFinishButton
+          className="xs:inline hidden"
           isSuccess={isSuccess}
           content="EXIT INTERFACE"
           onClick={() => {
