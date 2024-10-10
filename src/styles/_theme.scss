@@ -1,7 +1,7 @@
 :root {
   --breach-outer-px: 2px;
   --breach-inner-pt: 1rem;
-  --breach-inner-pb: 1rem;
+  --breach-inner-pb: 2rem;
   --breach-inner-pl: 0.5rem;
   --breach-inner-pr: 0.5rem;
   --breach-content-x-gap: 28px;
@@ -9,10 +9,10 @@
 
   // Matrix
   --matrix-width: 100%;
-  --matrix-code-size: 48px;
-  --matrix-code-font-size: 18px;
+  --matrix-code-size: 44px;
+  --matrix-code-font-size: 17px;
   --matrix-inner-py: 12px;
-  --matrix-inner-px: 16px;
+  --matrix-inner-px: 12px;
   --bg-matrix-primary-selection: hsl(247.5 20% 15.69%);
   --bg-matrix-secondary-selection: hsl(72.18 98.52% 26.47% / 15%);
 
@@ -71,6 +71,13 @@
     --sequences-code-size: 36px;
     --sequences-codes-gap: 4px;
     --sequences-sticks-out-by: 4px;
+  }
+
+  @media (min-width: theme("screens.xs")) {
+    // Matrix
+    --matrix-code-size: 46px;
+    --matrix-code-font-size: 18px;
+    --matrix-inner-px: 30px;
   }
 
   @media (min-width: theme("screens.sm")) {
