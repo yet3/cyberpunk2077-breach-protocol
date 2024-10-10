@@ -14,6 +14,7 @@ interface IProps {
   noBackdrop?: boolean;
 
   topClass?: string;
+  modalClass?: string;
 }
 
 export const Modal = ({
@@ -23,6 +24,7 @@ export const Modal = ({
   footer,
   noBackdrop,
   topClass,
+  modalClass,
 }: IProps) => {
   const modalsRoot = document.querySelector("#modals");
   if (!modalsRoot) throw Error("#modals element is not defined!");
@@ -39,7 +41,7 @@ export const Modal = ({
       )}
 
       <aside
-        className="flex flex-col"
+        className={clsx("flex flex-col", modalClass)}
         style={{ width, animation: "anim__scale-y-blink-in 0.4s ease 1" }}
       >
         <div className="relative">

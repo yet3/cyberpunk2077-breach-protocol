@@ -16,7 +16,7 @@ html {
     overflow-y: auto;
   }
 
-  @media (min-width: theme("screens.md")) {
+  body {
     overflow-x: hidden;
   }
 }

@@ -41,10 +41,10 @@ export const WelcomeModal = () => {
 
   return (
     <Modal
-      width="500px"
+      modalClass="sm:w-[500px] xs:w-[450px] w-full"
       header={`${greeting}, Night city!`}
       body={
-        <div className="flex flex-col leading-relaxed">
+        <div className="flex flex-col leading-relaxed text-justify">
           <p>
             Jack into this{" "}
             <Anchor
@@ -61,7 +61,7 @@ export const WelcomeModal = () => {
             . Breach through ICE, and enjoy the ride in the data stream.
           </p>
 
-          <div className="flex justify-stretch w-full space-x-4 mt-1 mb-3">
+          <div className="grid sm:grid-cols-2 grid-cols-1 justify-stretch w-full sm:gap-4 gap-2 mt-1 mb-3">
             <Anchor
               className="mt-2 text-primary-500 rb-bg-modal flex-2"
               href="https://www.cyberpunk.net"
@@ -78,7 +78,7 @@ export const WelcomeModal = () => {
               }
             />
           </div>
-          <p>
+          <p className="text-left">
             If something glitches, hit up GitHub and{" "}
             <Anchor
               href={GITHUB_REPO_NEW_ISSUE_HREF}
@@ -92,6 +92,7 @@ export const WelcomeModal = () => {
       footer={
         <>
           <ModalButton
+            className="max-xs:w-full max-xs:py-3"
             content="CONFIRM"
             onClick={() => {
               setIsOpen(false);
