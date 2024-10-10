@@ -85,7 +85,7 @@ export const MatrixFinish = () => {
 
       <footer className="matrix-finish__footer flex justify-end space-x-4 mt-3 -z-1">
         <MatrixFinishButton
-          className="xs:inline hidden"
+          className="sm:inline hidden"
           isSuccess={isSuccess}
           content="EXIT INTERFACE"
           onClick={() => {
