@@ -92,9 +92,9 @@
 
   @media (min-width: theme("screens.lg")) {
     --breach-outer-px: 45px;
-    --breach-content-x-gap: 28px;
     --breach-inner-pt: 3.5rem;
-    --breach-content-y-gap: 26px;
+    --breach-content-x-gap: 28px;
+    --breach-content-y-gap: 24px;
 
     // Matrix
     --matrix-width: 425px;
@@ -110,10 +110,9 @@
 
   @media (min-width: theme("screens.xl")) {
     --breach-outer-px: 60px;
-    --breach-content-x-gap: 36px;
-    --breach-content-y-gap: 32px;
 
     // Matrix
+    --matrix-width: 450px;
     --matrix-inner-py: 24px;
     --matrix-inner-px: 70px;
     --bg-matrix-primary-selection: hsl(247.5 20 15.69);
