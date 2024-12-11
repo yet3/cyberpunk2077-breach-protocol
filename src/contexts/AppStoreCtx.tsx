@@ -17,7 +17,7 @@ const AppStoreCtx = createContext<IAppStore | null>(null);
 type IProps = PropsWithChildren;
 
 export const AppStoreProvider = ({ children }: IProps) => {
-  const storeRef = useRef<IAppStore>();
+  const storeRef = useRef<IAppStore>(null);
 
   if (!storeRef.current) {
     storeRef.current = createAppStore();

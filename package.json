@@ -13,8 +13,8 @@
     "@tanstack/react-router": "^1.47.5",
     "clsx": "^2.1.1",
     "mutative": "^1.0.8",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "use-mutative": "^1.1.6",
     "zustand": "5.0.0-rc.2",
     "zustand-mutative": "^1.0.3"
@@ -27,8 +27,8 @@
     "@tanstack/router-devtools": "^1.47.5",
     "@tanstack/router-plugin": "^1.47.0",
     "@types/node": "^22.5.4",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.2"
   }

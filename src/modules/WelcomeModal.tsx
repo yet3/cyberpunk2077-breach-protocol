@@ -90,16 +90,14 @@ export const WelcomeModal = () => {
         </div>
       }
       footer={
-        <>
-          <ModalButton
-            className="max-xs:w-full max-xs:py-3"
-            content="CONFIRM"
-            onClick={() => {
-              setIsOpen(false);
-              localStorage.setItem(WELCOME_MODAL_STORAGE_KEY, "false");
-            }}
-          />
-        </>
+        <ModalButton
+          className="max-xs:w-full max-xs:py-3"
+          content="CONFIRM"
+          onClick={() => {
+            setIsOpen(false);
+            localStorage.setItem(WELCOME_MODAL_STORAGE_KEY, "false");
+          }}
+        />
       }
     />
   );
