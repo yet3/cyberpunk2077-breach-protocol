@@ -18,7 +18,6 @@ export const generateBreachConfig = ({
   if (timeIdx === 1) matrixSize = 4;
   else if (timeIdx === 2) matrixSize = Math.min(matrixSize, 5);
   else if (timeIdx >= 3) matrixSize = Math.min(matrixSize, 6);
-  else if (timeIdx >= 4) matrixSize = Math.max(matrixSize, 6);
 
   const bufferSize = prng.randomInt({ min: 4, max: timeIdx <= 2 ? 6 : 10 });
 

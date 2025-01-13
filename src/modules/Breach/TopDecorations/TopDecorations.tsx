@@ -1,10 +1,11 @@
 import { Anchor } from "@common/Anchor";
 import { GitHubIcon } from "@common/Icons/GitHubIcon";
 import { ShareBreachButton } from "@common/ShareBreachButton";
-import { GITHUB_REPO_HREF } from "@lib";
+import { GITHUB_REPO_HREF, PORTFOLIO_HREF } from "@lib";
 import clsx from "clsx";
 import { BreachNeonTitle } from "./NeonTitle";
 import { BreachSquaresDecoration } from "./Squares";
+import { PortfolioIcon } from "@common/Icons/PortfolioIcon";
 
 export const BreachTopDecorations = () => {
   return (
@@ -17,7 +18,7 @@ export const BreachTopDecorations = () => {
       </div>
 
       <div
-        className="relative sm:grid hidden grid-cols-[1fr_auto] md:ml-4 md:mt-0 mt-6"
+        className="relative grid grid-cols-[1fr_auto] md:ml-4 md:mt-0 mt-6"
         style={{
           marginRight: "var(--breach-outer-px)",
         }}
@@ -30,27 +31,34 @@ export const BreachTopDecorations = () => {
             "2xl:grid-cols-[120px_1fr_auto] 2xl:gap-x-8": true,
             "xl:grid-cols-[85px_1fr_auto] xl:gap-x-6": true,
             "lg:grid-cols-[65px_1fr_auto] lg:gap-x-2": true,
-            "md:grid-cols-[auto_auto] gap-x-2": true,
-            "grid-cols-[120px_1fr_auto] gap-x-2": true,
+            "md:grid-cols-[auto_auto_auto] gap-x-2": true,
+            "grid-cols-[auto_1fr_auto]": true,
           })}
         >
-          <p className="xl:text-4px md:text-3px text-4px lg:inline md:hidden inline self-end text-justify">
+          <p className="xl:text-4px md:text-3px text-4px sm:inline hidden self-end text-justify">
             ONLY CC35 CERTIFIED AND DHSF 5TH CLASS OFFICERS ARE ALLOWED TO
             MANIPULATE, ACCESS OR DISABLE THIS DEVICE.
           </p>
           <p className="2xl:text-9px xl:text-7px md:text-5px text-6px">
             BREACH PROTOCOL INTERFACE
           </p>
-          <p className="2xl:text-9px xl:text-7px md:text-5px text-6px place-self-end">
+          <p className="2xl:text-9px xl:text-7px md:text-5px text-6px place-self-end sm:inline hidden">
             EKUMER 62UZ-FFLH-9YLT-E3Z7
           </p>
         </div>
         <div className="bg-page flex space-x-2 pl-2 pt-2">
-          <ShareBreachButton />
+          <ShareBreachButton className="text-sm sm:text-base" />
           <Anchor
             className="px-3"
+            ariaLabel="Github (opens in a new tab)"
             href={GITHUB_REPO_HREF}
             content={<GitHubIcon className="fill-primary-500" />}
+          />
+          <Anchor
+            className="px-3"
+            ariaLabel="Portfolio (opens in a new tab)"
+            href={PORTFOLIO_HREF}
+            content={<PortfolioIcon className="fill-primary-500" />}
           />
         </div>
       </div>

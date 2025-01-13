@@ -19,6 +19,8 @@ interface IProps {
   kind?: AnchorKind;
   openInNewTab?: boolean;
   href: string;
+
+  ariaLabel?: string;
 }
 
 export const Anchor = ({
@@ -28,12 +30,14 @@ export const Anchor = ({
   variant = AnchorVariant.PRIMARY,
   href,
   openInNewTab = true,
+  ariaLabel,
 }: IProps) => {
   return (
     <a
       href={href}
       rel="noopener noreferrer"
       target={openInNewTab ? "_blank" : "_self"}
+      aria-label={ariaLabel}
       className={clsx(
         className,
         kind === AnchorKind.BUTTON

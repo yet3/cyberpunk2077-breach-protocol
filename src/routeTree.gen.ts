@@ -12,8 +12,8 @@ import { createFileRoute } from '@tanstack/react-router'
 
 // Import Routes
 
-import { Route as SeedImport } from './routes/$seed'
 import { Route as rootRoute } from './routes/__root'
+import { Route as SeedImport } from './routes/$seed'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes

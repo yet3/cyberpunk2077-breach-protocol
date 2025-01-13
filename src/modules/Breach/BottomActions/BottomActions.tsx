@@ -1,6 +1,5 @@
 import { Button } from "@common/Button";
 import { RouterLink } from "@common/RouterLink";
-import { ShareBreachButton } from "@common/ShareBreachButton";
 import { useAppStore } from "@contexts/AppStoreCtx";
 import { DailyBtn } from "./DailyBtn";
 
@@ -15,7 +14,6 @@ export const BreachBottomActions = () => {
         paddingRight: "var(--breach-outer-px)",
       }}
     >
-      <ShareBreachButton className="xs:hidden" />
       {!isOnDaily ? (
         <>
           <Button
@@ -27,7 +25,7 @@ export const BreachBottomActions = () => {
               });
             }}
           />
-          <DailyBtn className="max-xs:mt-4" />
+          <DailyBtn />
         </>
       ) : (
         <RouterLink to="/" content="NEW BREACH" />
