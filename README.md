@@ -6,7 +6,7 @@
 ### About
 A fan recreation of the hacking mini-game "Breach Protocol" from [Cyberpunk 2077](https://www.cyberpunk.net).
 
-You can play it [here](https://cyberpunk2077-breach-protocol.vercel.app/)
+You can play it [here](https://www.cyberpunk-breach-protocol.com/)
 ![Breach Protocol gif](./public/cover.gif)
 
 ### Motivation
