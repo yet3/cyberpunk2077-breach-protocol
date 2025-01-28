@@ -9,7 +9,7 @@ const AUTHOR = "Maksymilian Kasperowicz <yet3.dev@gmail.com>";
 const TITLE = "Cyberpunk 2077 // Breach Protocol";
 const DESCRIPTION =
   "A fan recreation of hacking mini-game 'Breach Protocol' from Cybeprunk 2077";
-const URL = "https://cyberpunk2077-breach-protocol.vercel.app/";
+const URL = "https://www.cyberpunk-breach-protocol.com/";
 const LOCALE = "en_US";
 
 const COVER_IMG = "/cover.png";
