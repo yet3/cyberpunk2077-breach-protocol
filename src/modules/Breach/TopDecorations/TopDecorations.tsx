@@ -54,12 +54,12 @@ export const BreachTopDecorations = () => {
             href={GITHUB_REPO_HREF}
             content={<GitHubIcon className="fill-primary-500" />}
           />
-          <Anchor
-            className="px-3"
-            ariaLabel="Portfolio (opens in a new tab)"
-            href={PORTFOLIO_HREF}
-            content={<PortfolioIcon className="fill-primary-500" />}
-          />
+          {/* <Anchor */}
+          {/*   className="px-3" */}
+          {/*   ariaLabel="Portfolio (opens in a new tab)" */}
+          {/*   href={PORTFOLIO_HREF} */}
+          {/*   content={<PortfolioIcon className="fill-primary-500" />} */}
+          {/* /> */}
         </div>
       </div>
     </div>
