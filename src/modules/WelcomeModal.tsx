@@ -41,7 +41,7 @@ export const WelcomeModal = () => {
 
   return (
     <Modal
-      modalClass="sm:w-[500px] xs:w-[450px] w-full"
+      modalClass="sm:w-[510px] xs:w-[450px] w-full"
       header={`${greeting}, Night city!`}
       body={
         <div className="flex flex-col leading-relaxed text-justify">
